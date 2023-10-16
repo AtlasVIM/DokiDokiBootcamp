@@ -1,15 +1,23 @@
 package io.codeforall.gamejam.dokidokibootcamp.controls;
 
+import io.codeforall.gamejam.dokidokibootcamp.scenes.ChoiceLine;
+import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import io.codeforall.gamejam.dokidokibootcamp.Game;
+
+import java.awt.*;
+
 public class Controls implements KeyboardHandler{
 
     private static int dialogue = 0;
+    private ChoiceLine line;
 
-    public Controls() {
+
+    public Controls(ChoiceLine line) {
+        this.line = line;
         init();
     }
 
@@ -45,11 +53,14 @@ public class Controls implements KeyboardHandler{
             case KeyboardEvent.KEY_UP:
                 if (dialogue > 0) {
                     --dialogue;
+                    line.moveUp();
                 }
+
                 break;
             case KeyboardEvent.KEY_DOWN:
                 if (dialogue < 1) { //MUDAR CONSOANTE NUMERO DE ESCOLHAS.
                     ++dialogue;
+                    line.moveDown();
                 }
                 break;
             case KeyboardEvent.KEY_SPACE:
