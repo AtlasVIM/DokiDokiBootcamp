@@ -1,4 +1,4 @@
-package gameobjects;
+package io.codeforall.gamejam.dokidokibootcamp.gameobjects;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 

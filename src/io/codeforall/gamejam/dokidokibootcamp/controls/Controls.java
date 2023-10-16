@@ -1,16 +1,21 @@
-package controls;
+package io.codeforall.gamejam.dokidokibootcamp.controls;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-
+import io.codeforall.gamejam.dokidokibootcamp.Game;
 public class Controls implements KeyboardHandler{
 
+    private static int dialogue = 0;
+
     public Controls() {
+        init();
     }
 
-    private static int dialogue = 0;
+    public static int getDialogue() {
+        return dialogue;
+    }
 
     private void init() {
         Keyboard keyboard = new Keyboard(this);
@@ -43,11 +48,12 @@ public class Controls implements KeyboardHandler{
                 }
                 break;
             case KeyboardEvent.KEY_DOWN:
-                if (dialogue < 1000) { //MUDAR CONSOANTE NUMERO DE ESCOLHAS.
+                if (dialogue < 1) { //MUDAR CONSOANTE NUMERO DE ESCOLHAS.
                     ++dialogue;
                 }
                 break;
             case KeyboardEvent.KEY_SPACE:
+                Game.chooseDialogue();
                 break;
 
         }
