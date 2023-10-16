@@ -36,7 +36,7 @@ public class Controls implements KeyboardHandler{
                 break;
 
         }
-    }
+    } 
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
