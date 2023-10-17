@@ -130,12 +130,12 @@ public class GameScenario {
         paragraph1.setDialogue("They are both so sugoi....");
         paragraph2.setDialogue("What should I do..?");
         waitForInput();
-        line.getLine().fill();
+        line.fill();
         paragraph1.setDialogue("Talk to Mic.");
         paragraph2.setDialogue("Talk to Nozk.");
         waitForInput();
     }
-    public void day1chooseDialogue() {
+    public void day1chooseDialogue() throws InterruptedException {
         switch (Controls.getDialogue()) {
             case 0:
                 clearText();
@@ -153,21 +153,56 @@ public class GameScenario {
     }
 
 
-    public void day1bathroom() {
-        Scene.load("resources/cfa_wc.jpg");
+    public void day1bathroom() throws InterruptedException {
+        Scene.load("resources/cfa_metropolis.jpg");
         clearText();
+
         nozkdraw();
         changeName("NOZK");
-        paragraph1.setDialogue("you fryin chicken in there?");
+        paragraph1.setDialogue("Hello cadet! So glad to meet you");
+        waitForInput();
+
+        paragraph1.setDialogue("Do you wanna see a magic trick?");
+        waitForInput();
+        clearText();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Magic? Sure!");
+        paragraph2.setDialogue("I'm not a big fan of magic tricks.");
+        line.fill();
+
 
     }
 
-    public void day1classroom() {
+    public void day1classroom() throws InterruptedException {
         Scene.load("resources/cfa_metropolis.jpg");
         clearText();
+
         mikedraw();
         changeName("MIC");
-        paragraph1.setDialogue("let me see your booleans");
+        paragraph1.setDialogue("What's up cadet? My name's MicDrop");
+        waitForInput();
+
+        paragraph1.setDialogue("Do you like hip-hop?");
+
+        waitForInput();
+        clearText();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Hell yeah!");
+        paragraph2.setDialogue("Nah, not a big fan...");
+        line.fill();
+
+        waitForInput();
+        clearText();
+        line.delete();
+
+        paragraph1.setDialogue("Mic turns on the classroom speakers"); //POR MINISAR A DAR AQUI
+
+        waitForInput();
+
+        paragraph1.setDialogue("A symphony written by Apollo himself enters my ears.");
+        paragraph2.setDialogue("I had never heard such a beautiful sound in my life before.");
 
     }
     /*

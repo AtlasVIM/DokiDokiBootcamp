@@ -23,6 +23,10 @@ public class ChoiceLine {
         return line;
     }
 
+    public void fill() {
+        line.fill();
+    }
+
 
     public void moveUp() {
         line.translate(0, -40);
