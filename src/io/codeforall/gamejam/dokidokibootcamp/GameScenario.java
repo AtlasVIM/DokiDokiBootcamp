@@ -40,14 +40,18 @@ public class GameScenario {
     }
 
     public void nozkdraw() {
+        nameText.delete();
         textbox.delete();
         nozk.draw();
         textbox.draw();
+        nameText.draw();
     }
     public void mikedraw() {
+        nameText.delete();
         textbox.delete();
         mike.draw();
         textbox.draw();
+        nameText.draw();
     }
 
     public void changeName(String s) {
@@ -55,23 +59,9 @@ public class GameScenario {
         nameText.setName(s);
     }
 
-
-    public void day1chooseDialogue() {
-        switch (Controls.getDialogue()) {
-            case 0:
-                clearText();
-                line.delete();
-                day1classroom();
-                break;
-            case 1:
-                clearText();
-                line.delete();
-                day1bathroom();
-                break;
-            default:
-                break;
-        }
-    }
+/*
+=== DAY 1 ===
+ */
 
     public void day1() throws InterruptedException {
         day1setup();
@@ -120,18 +110,46 @@ public class GameScenario {
         changeName("MIC");
         paragraph1.setDialogue("What's up lil guys!");
         waitForInput();
+        clearText();
     }
 
     public void day1choice() throws InterruptedException {
         clearText();
-        mike.delete();
         changeName("YOU");
-        paragraph1.setDialogue("is this sugoi?");
+        paragraph1.setDialogue("Mic is so cool and mysterious...");
+        waitForInput();
+        clearText();
+
+        mike.delete();
+        nozkdraw();
+        paragraph1.setDialogue("And Nozk is such a goofball...");
+        waitForInput();
+        clearText();
+
+        nozk.delete();
+        paragraph1.setDialogue("They are both so sugoi....");
+        paragraph2.setDialogue("What should I do..?");
         waitForInput();
         line.getLine().fill();
-        paragraph1.setDialogue("Na verdade até prefiro o João Baião.");
-        paragraph2.setDialogue("Esbetaculo.");
+        paragraph1.setDialogue("Talk to Mic.");
+        paragraph2.setDialogue("Talk to Nozk.");
         waitForInput();
+    }
+    public void day1chooseDialogue() {
+        switch (Controls.getDialogue()) {
+            case 0:
+                clearText();
+                line.delete();
+                day1classroom();
+                break;
+            case 1:
+                clearText();
+                line.delete();
+                day1bathroom();
+                break;
+            default:
+                break;
+        }
     }
 
 
@@ -152,6 +170,8 @@ public class GameScenario {
         paragraph1.setDialogue("let me see your booleans");
 
     }
-
+    /*
+    === DAY 1 END ===
+     */
 
 }
