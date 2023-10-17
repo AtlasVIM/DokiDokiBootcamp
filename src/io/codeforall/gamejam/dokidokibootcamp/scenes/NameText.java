@@ -21,8 +21,20 @@ public class NameText {
     }
 
     public void setName(String s) {
-        name.draw();
         name.setText(s);
+        name.draw();
+    }
+
+    public void setText(String s) {
+        name.setText(s);
+    }
+
+    public void draw() {
+        name.draw();
+    }
+
+    public void delete() {
+        name.delete();
     }
 
     /*public static String SlowPrint(String s) {

@@ -2,7 +2,7 @@ package io.codeforall.gamejam.dokidokibootcamp.gameobjects;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-abstract class Character {
+public abstract class Character {
 
     private int loveLevel = 0;
 
@@ -25,6 +25,14 @@ abstract class Character {
         picture.load(s);
         picture.draw();
     }
+
+    public void draw() {
+        picture.draw();
+    }
+    public void delete() {
+        picture.delete();
+    }
+
 }
 
 

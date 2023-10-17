@@ -27,7 +27,8 @@ public class GameScenario {
 
     public static volatile boolean gameStatus;
 
-    private void waitForInput() {
+    private void waitForInput() throws InterruptedException {
+        Thread.sleep(1000);
         while (!gameStatus) {}
     }
 
@@ -37,6 +38,24 @@ public class GameScenario {
         paragraph2.delete();
         paragraph1.delete();
     }
+
+    public void nozkdraw() {
+        textbox.delete();
+        nozk.draw();
+        textbox.draw();
+    }
+    public void mikedraw() {
+        textbox.delete();
+        mike.draw();
+        textbox.draw();
+    }
+
+    public void changeName(String s) {
+        nameText.delete();
+        nameText.setName(s);
+    }
+
+
     public void day1chooseDialogue() {
         switch (Controls.getDialogue()) {
             case 0:
@@ -56,11 +75,8 @@ public class GameScenario {
 
     public void day1() throws InterruptedException {
         day1setup();
-        waitForInput();
         day1scenario1();
-        waitForInput();
         day1choice();
-        waitForInput();
         day1chooseDialogue();
     }
 
@@ -78,46 +94,61 @@ public class GameScenario {
 
     public  void day1scenario1() throws InterruptedException {
         paragraph1.setDialogue("Welcome to the <Code4All_> fullstack developer bootcamp!");
-        Thread.sleep(1000);
         waitForInput();
-        paragraph1.setDialogue("desu ne");
-        paragraph2.setDialogue("muita fixe");
-        paragraph3.setDialogue("lol");
-        paragraph4.setDialogue("pila");
-        Thread.sleep(1000);
+        paragraph1.setDialogue("Today is the first day of your lives as programmers.");
+        paragraph2.setDialogue("Isn't it exciting!?");
+        waitForInput();
+        clearText();
+        paragraph1.setDialogue("Are you ready to meet your Master Coders?");
+        waitForInput();
+        clearText();
+        nameText.setName("YOU");
+        paragraph1.setDialogue("It was at this time... my heart skipped a beat...");
+        waitForInput();
+        clearText();
+        textbox.delete();
+        nozk = new CharacterNozk(new Picture(700, 315, "resources/dude.png"));
+        textbox.draw();
+        changeName("NOZK");
+        paragraph1.setDialogue("HOW'S IT GOING YOU DISGRACES!!!!");
+        waitForInput();
+        clearText();
+        nozk.delete();
+        textbox.delete();
+        mike = new CharacterMike(new Picture(700, 315, "resources/dude1.png"));
+        textbox.draw();
+        changeName("MIC");
+        paragraph1.setDialogue("What's up lil guys!");
         waitForInput();
     }
 
     public void day1choice() throws InterruptedException {
-        nameText.getName().delete();
         clearText();
+        mike.delete();
+        changeName("YOU");
         paragraph1.setDialogue("is this sugoi?");
-        Thread.sleep(1000);
         waitForInput();
         line.getLine().fill();
         paragraph1.setDialogue("Na verdade até prefiro o João Baião.");
         paragraph2.setDialogue("Esbetaculo.");
-        Thread.sleep(1000);
         waitForInput();
     }
 
 
     public void day1bathroom() {
         Scene.load("resources/cfa_wc.jpg");
-        textbox.delete();
-        nozk = new CharacterNozk(new Picture(700, 315, "resources/dude.png"));
-        textbox.draw();
-        nameText.setName("NOZK");
+        clearText();
+        nozkdraw();
+        changeName("NOZK");
         paragraph1.setDialogue("you fryin chicken in there?");
 
     }
 
     public void day1classroom() {
         Scene.load("resources/cfa_metropolis.jpg");
-        textbox.delete();
-        mike = new CharacterMike(new Picture(700,315,"resources/dude1.png"));
-        textbox.draw();
-        nameText.setName("MIC");
+        clearText();
+        mikedraw();
+        changeName("MIC");
         paragraph1.setDialogue("let me see your booleans");
 
     }
