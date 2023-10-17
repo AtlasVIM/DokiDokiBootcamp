@@ -5,12 +5,12 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 
 import java.awt.*;
 
-public class Dialogue {
+public class NameText {
 
-    Text dialogue;
+    Text name;
 
-    public Dialogue(String message) {
-        Text text = new Text(480, 770, message, Font.MONOSPACED, Font.PLAIN , 20);
+    public NameText(String message) {
+        Text text = new Text(480, 720, message, Font.MONOSPACED, Font.ITALIC, 30);
         text.setColor(Color.BLACK);
         text.draw();
 

@@ -8,7 +8,7 @@ abstract class Character {
 
     Picture picture;
 
-    Character(Picture picture){
+    Character(Picture picture) {
         this.picture = picture;
         this.picture.draw();
     }

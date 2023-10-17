@@ -7,7 +7,7 @@ public class Textbox {
     private Picture box;
 
     public Textbox() {
-        this.box = new Picture(150,700,"resources/textbox2.png");
+        this.box = new Picture(450, 700, "resources/textbox2.png");
         box.draw();
     }
 }

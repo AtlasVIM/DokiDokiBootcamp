@@ -9,7 +9,7 @@ public class ChoiceLine {
     private Rectangle line;
 
     public ChoiceLine() {
-        this.line = new org.academiadecodigo.simplegraphics.graphics.Rectangle(180,100, 100, 10);
+        this.line = new org.academiadecodigo.simplegraphics.graphics.Rectangle(480, 800, 100, 10);
         line.setColor(Color.BLACK);
         line.fill();
 
@@ -21,10 +21,10 @@ public class ChoiceLine {
 
 
     public void moveUp() {
-        line.translate(0,-40);
+        line.translate(0, -60);
     }
 
     public void moveDown() {
-        line.translate(0,40);
+        line.translate(0, 60);
     }
 }
