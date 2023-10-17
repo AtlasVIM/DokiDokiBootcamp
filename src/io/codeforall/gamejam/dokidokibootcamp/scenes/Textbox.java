@@ -10,4 +10,12 @@ public class Textbox {
         this.box = new Picture(450, 700, "resources/textbox2.png");
         box.draw();
     }
+
+    public void delete() {
+        box.delete();
+    }
+
+    public void draw() {
+        box.draw();
+    }
 }

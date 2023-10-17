@@ -1,5 +1,6 @@
 package io.codeforall.gamejam.dokidokibootcamp.controls;
 
+import io.codeforall.gamejam.dokidokibootcamp.GameScenario;
 import io.codeforall.gamejam.dokidokibootcamp.scenes.ChoiceLine;
 import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -13,11 +14,9 @@ import java.awt.*;
 public class Controls implements KeyboardHandler{
 
     private static int dialogue = 0;
-    private ChoiceLine line;
 
 
-    public Controls(ChoiceLine line) {
-        this.line = line;
+    public Controls() {
         init();
     }
 
@@ -26,6 +25,7 @@ public class Controls implements KeyboardHandler{
     }
 
     private void init() {
+
         Keyboard keyboard = new Keyboard(this);
 
         KeyboardEvent pressedUp = new KeyboardEvent();
@@ -43,28 +43,34 @@ public class Controls implements KeyboardHandler{
         select.setKey(KeyboardEvent.KEY_SPACE);
         keyboard.addEventListener(select);
 
+        KeyboardEvent deselect  = new KeyboardEvent();
+        deselect.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        deselect.setKey(KeyboardEvent.KEY_SPACE);
+        keyboard.addEventListener(deselect);
+
     }
 
     @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
+    public synchronized void keyPressed(KeyboardEvent keyboardEvent) {
         int key = keyboardEvent.getKey();
 
         switch (key) {
             case KeyboardEvent.KEY_UP:
                 if (dialogue > 0) {
                     --dialogue;
-                    line.moveUp();
+                    GameScenario.line.moveUp();
                 }
 
                 break;
             case KeyboardEvent.KEY_DOWN:
                 if (dialogue < 1) { //MUDAR CONSOANTE NUMERO DE ESCOLHAS.
                     ++dialogue;
-                    line.moveDown();
+                    GameScenario.line.moveDown();
                 }
                 break;
             case KeyboardEvent.KEY_SPACE:
-                Game.chooseDialogue();
+                //Game.chooseDialogue();
+                GameScenario.gameStatus = true;
                 break;
 
         }
@@ -72,7 +78,13 @@ public class Controls implements KeyboardHandler{
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+        int key = keyboardEvent.getKey();
 
+        switch (key) {
+            case KeyboardEvent.KEY_SPACE:
+                GameScenario.gameStatus = false;
+                break;
+        }
     }
 }
 

@@ -7,14 +7,29 @@ import java.awt.*;
 
 public class Dialogue {
 
-    Text dialogue;
+    Text text;
 
-    public Dialogue(String message) {
-        Text text = new Text(480, 770, message, Font.MONOSPACED, Font.PLAIN , 20);
+    public Dialogue(int x, int y, String message) {
+        this.text = new Text(x, y, message, Font.MONOSPACED, Font.PLAIN , 20);
         text.setColor(Color.BLACK);
         text.draw();
 
     }
+
+    public Text getText() {
+        return text;
+    }
+
+    public void setDialogue(String s) {
+        text.setText(s);
+        text.draw();
+    }
+
+    public void delete() {
+        text.delete();
+    }
+
+
 
 
     /*public static String SlowPrint(String s) {

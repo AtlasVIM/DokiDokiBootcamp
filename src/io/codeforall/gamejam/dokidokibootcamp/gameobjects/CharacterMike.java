@@ -4,6 +4,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class CharacterMike extends Character{
 
+    Picture sprite = new Picture();
+
     public CharacterMike(Picture picture) {
         super(picture);
     }

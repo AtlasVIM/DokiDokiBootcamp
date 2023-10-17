@@ -7,15 +7,17 @@ public class Scene {
 
     private static Picture background;
 
-    public Scene() {
-        this.background = new Picture(10, 10, "resources/codeforall_lobby.jpg");
+    public Scene(String s) {
+        background = new Picture(10, 10, s);
         background.draw();
-        System.out.println(background.getMaxX());
-        System.out.println(background.getMaxY());
     }
 
     public static Picture getBackground() {
         return background;
+    }
+
+    public static void load(String s) {
+        background.load(s);
     }
 
 }
