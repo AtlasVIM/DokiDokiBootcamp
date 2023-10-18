@@ -16,8 +16,7 @@ public class Game {
     public void start() throws InterruptedException {
         Controls controls = new Controls();
         gameScenario.day1();
-        //CharacterMike mike = new CharacterMike(new Picture(800, 310, "resources/dude1.png"));
-        //CharacterNozk nozk = new CharacterNozk(new Picture(700, 315, "resources/dude.png"));
+        gameScenario.day2();
 
     }
 

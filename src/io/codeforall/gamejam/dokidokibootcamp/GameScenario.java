@@ -26,11 +26,15 @@ public class GameScenario {
     private CharacterMike mike;
     private CharacterNozk nozk;
 
+    public String dayChoice;
+    public String dayReject;
+
     public static volatile boolean gameStatus;
 
     private void waitForInput() throws InterruptedException {
         Thread.sleep(1000);
-        while (!gameStatus) {}
+        while (!gameStatus) {
+        }
     }
 
     public void clearText() {
@@ -65,19 +69,18 @@ public class GameScenario {
         day1chooseDialogue();
     }
 
-
     public void day1setup() { //
         line = new ChoiceLine();
         this.scene = new Scene("resources/codeforall_lobby.jpg");
         this.textbox = new Textbox();
-        this.paragraph1 = new Dialogue(480,770,"Good Morning everyone");
+        this.paragraph1 = new Dialogue(480, 770, "Good Morning everyone");
         this.paragraph2 = new Dialogue(480, 810, "");
-        this.paragraph3 = new Dialogue(480,850, "");
+        this.paragraph3 = new Dialogue(480, 850, "");
         this.paragraph4 = new Dialogue(480, 890, "");
         this.nameText = new NameText("Catarina Campino");
     }
 
-    public  void day1scenario1() throws InterruptedException {
+    public void day1scenario1() throws InterruptedException {
         paragraph1.setDialogue("Welcome to the <Code4All_> fullstack developer bootcamp!");
         waitForInput();
         paragraph1.setDialogue("Today is the first day of your lives as programmers.");
@@ -130,17 +133,39 @@ public class GameScenario {
         paragraph2.setDialogue("Talk to Nozk.");
         waitForInput();
     }
+
     public void day1chooseDialogue() throws InterruptedException {
         switch (Controls.getDialogue()) {
             case 0:
                 clearText();
                 line.delete();
                 day1classroom();
+                dayChoice = "Mic";
+                dayReject = "Nozk";
                 break;
             case 1:
                 clearText();
                 line.delete();
                 day1bathroom();
+                dayChoice = "Nozk";
+                dayReject = "Mic";
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void dayInteraction() throws InterruptedException{
+        switch (Controls.getDialogue()) {
+            case 0:
+                paragraph1.setDialogue("YES!! I think, you and I can still get along.");
+                waitForInput();
+                clearText();
+                break;
+            case 1:
+                paragraph1.setDialogue("Oh... Nevermind then...");
+                waitForInput();
+                clearText();
                 break;
             default:
                 break;
@@ -202,6 +227,225 @@ public class GameScenario {
     }
     /*
     === DAY 1 END ===
+
+    insert transition!!!!!!!!!!
      */
 
+
+    public void day2() throws InterruptedException {
+        day2setup();
+        day2scenario1();
+        //day2choice();
+        //day2chooseDialogue();
+    }
+
+    public void day2setup() { //
+        line = new ChoiceLine();
+        this.scene = new Scene("resources/codeforall_lobby.jpg");
+        this.textbox = new Textbox();
+        this.paragraph1 = new Dialogue(480, 770, "");
+        this.paragraph2 = new Dialogue(480, 810, "");
+        this.paragraph3 = new Dialogue(480, 850, "");
+        this.paragraph4 = new Dialogue(480, 890, "");
+        this.nameText = new NameText("YOU");
+    }
+
+    public void day2scenario1() throws InterruptedException {
+        paragraph1.setDialogue("Last night with " + dayChoice + " was amazing...");
+        waitForInput();
+        clearText();
+
+        paragraph1.setDialogue("I've never felt so connected with anyone before");
+        waitForInput();
+        clearText();
+
+        paragraph1.setDialogue("Suddenly, I feel a throbbing touch on my shoulder.");
+        waitForInput();
+        clearText();
+
+        nameText.setName(dayReject);
+        if (dayReject.equals("Nozk")) {
+            drawCharacter(nozk);
+
+        } else {
+            drawCharacter(mike);
+        }
+        paragraph1.setDialogue("Hey... I didn't see you yesterday...");
+        paragraph2.setDialogue("Is everything alright?");
+        waitForInput();
+        clearText();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Before I could respond, " + dayReject + " passionately interrupted me.");
+        waitForInput();
+        clearText();
+
+        if (dayReject.equals("Nozk")) {
+            changeName("NOZK");
+            paragraph1.setDialogue("Do you know the colour of my soul?!");
+            waitForInput();
+            clearText();
+
+            nozk.delete();
+            changeName("YOU");
+            paragraph1.setDialogue("It's definetely pink!");
+            paragraph2.setDialogue("Hmm... Black, I suppose?");
+            line.fill();
+            waitForInput();
+            clearText();
+            line.delete();
+
+            nozk.draw();
+            textbox.draw();
+            changeName("NOZK");
+
+        } else {
+            changeName("MIC");
+            paragraph1.setDialogue("So... Have you ever watched One Piece?");
+            waitForInput();
+            clearText();
+
+            mike.delete();
+            changeName("YOU");
+            paragraph1.setDialogue("OMG YES, I LOVE IT!");
+            paragraph2.setDialogue("One piece... of what, exactly?");
+            line.fill();
+            waitForInput();
+            clearText();
+            line.delete();
+            textbox.delete();
+
+            mike.draw();
+            textbox.draw();
+            changeName("MIC");
+        }
+        dayInteraction();
+// transition end of classes!
+        //sou eu a falar e escolho com quem vou estudar
+        //o dia seguinte começa no cenário da pessoa que se escolheu estudar
+        //no final do dia repensa-se
+        textbox.delete();
+        nozk = new CharacterNozk(new Picture(700, 315, "resources/dude.png"));
+        textbox.draw();
+        changeName("NOZK");
+        paragraph1.setDialogue("HOW'S IT GOING YOU DISGRACES!!!!");
+        waitForInput();
+        clearText();
+        nozk.delete();
+        textbox.delete();
+        mike = new CharacterMike(new Picture(700, 315, "resources/dude1.png"));
+        textbox.draw();
+        changeName("MIC");
+        paragraph1.setDialogue("What's up lil guys!");
+        waitForInput();
+        clearText();
+    }
+/*
+    public void day2choice(){ //throws InterruptedException {
+        clearText();
+        changeName("YOU");
+        paragraph1.setDialogue("Mic is so cool and mysterious...");
+        waitForInput();
+        clearText();
+
+        mike.delete();
+        drawCharacter(nozk);
+        paragraph1.setDialogue("And Nozk is such a goofball...");
+        waitForInput();
+        clearText();
+
+        nozk.delete();
+        paragraph1.setDialogue("They are both so sugoi....");
+        paragraph2.setDialogue("What should I do..?");
+        waitForInput();
+        line.fill();
+        paragraph1.setDialogue("Talk to Mic.");
+        paragraph2.setDialogue("Talk to Nozk.");
+        waitForInput();
+    }
+    public void day2chooseDialogue() throws InterruptedException {
+        switch (Controls.getDialogue()) {
+            case 0:
+                clearText();
+                line.delete();
+                day1classroom();
+                break;
+            case 1:
+                clearText();
+                line.delete();
+                day1bathroom();
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    public void day2bathroom() throws InterruptedException {
+        Scene.load("resources/cfa_metropolis.jpg");
+        clearText();
+
+        drawCharacter(nozk);
+        changeName("NOZK");
+        paragraph1.setDialogue("Hello cadet! So glad to meet you");
+        waitForInput();
+
+        paragraph1.setDialogue("Do you wanna see a magic trick?");
+        waitForInput();
+        clearText();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Magic? Sure!");
+        paragraph2.setDialogue("I'm not a big fan of magic tricks.");
+        line.fill();
+
+
+    }
+
+    public void day2classroom() throws InterruptedException {
+        Scene.load("resources/cfa_metropolis.jpg");
+        clearText();
+
+        drawCharacter(mike);
+        changeName("MIC");
+        paragraph1.setDialogue("What's up cadet? My name's MicDrop");
+        waitForInput();
+
+        paragraph1.setDialogue("Do you like hip-hop?");
+
+        waitForInput();
+        clearText();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Hell yeah!");
+        paragraph2.setDialogue("Nah, not a big fan...");
+        line.fill();
+
+        waitForInput();
+        clearText();
+        line.delete();
+
+        paragraph1.setDialogue("Mic turns on the classroom speakers"); //POR MINISAR A DAR AQUI
+
+        waitForInput();
+
+        paragraph1.setDialogue("A symphony written by Apollo himself enters my ears.");
+        paragraph2.setDialogue("I had never heard such a beautiful sound in my life before.");
+
+    }
+
+
+
+
+*/
+
 }
+
+
+
+
+
+
+
+
+
