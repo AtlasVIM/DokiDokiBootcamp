@@ -28,6 +28,7 @@ public class GameScenario {
 
     public String dayChoice;
     public String dayReject;
+    public Transitions transitions;
 
     public static volatile boolean gameStatus;
 
@@ -58,6 +59,8 @@ public class GameScenario {
         nameText.setName(s);
     }
 
+
+
 /*
 === DAY 1 ===
  */
@@ -67,6 +70,11 @@ public class GameScenario {
         day1scenario1();
         day1choice();
         day1chooseDialogue();
+        transitions = Transitions.END_OF_CLASS;
+        transitions.getPicture();
+        transitions.getText();
+        waitForInput();
+
     }
 
     public void day1setup() { //
@@ -191,6 +199,10 @@ public class GameScenario {
         paragraph2.setDialogue("I'm not a big fan of magic tricks.");
         line.fill();
 
+        waitForInput();
+        clearText();
+        line.delete();
+
 
     }
 
@@ -287,9 +299,10 @@ public class GameScenario {
             clearText();
 
             nozk.delete();
-            changeName("YOU");
+            changeName("YOU");  // É preciso resolver o mau posicionamento da linha
             paragraph1.setDialogue("It's definetely pink!");
             paragraph2.setDialogue("Hmm... Black, I suppose?");
+            line.delete();
             line.fill();
             waitForInput();
             clearText();
@@ -306,39 +319,31 @@ public class GameScenario {
             clearText();
 
             mike.delete();
-            changeName("YOU");
+            changeName("YOU"); // É preciso resolver o mau posicionamento da linha
             paragraph1.setDialogue("OMG YES, I LOVE IT!");
             paragraph2.setDialogue("One piece... of what, exactly?");
+            line.delete();
             line.fill();
             waitForInput();
             clearText();
             line.delete();
-            textbox.delete();
 
             mike.draw();
             textbox.draw();
             changeName("MIC");
         }
         dayInteraction();
-// transition end of classes!
+
+            /** transition end of classes! */
+
+            changeName("YOU");
+            paragraph1.setDialogue("");
+
+
         //sou eu a falar e escolho com quem vou estudar
         //o dia seguinte começa no cenário da pessoa que se escolheu estudar
         //no final do dia repensa-se
-        textbox.delete();
-        nozk = new CharacterNozk(new Picture(700, 315, "resources/dude.png"));
-        textbox.draw();
-        changeName("NOZK");
-        paragraph1.setDialogue("HOW'S IT GOING YOU DISGRACES!!!!");
-        waitForInput();
-        clearText();
-        nozk.delete();
-        textbox.delete();
-        mike = new CharacterMike(new Picture(700, 315, "resources/dude1.png"));
-        textbox.draw();
-        changeName("MIC");
-        paragraph1.setDialogue("What's up lil guys!");
-        waitForInput();
-        clearText();
+
     }
 /*
     public void day2choice(){ //throws InterruptedException {
