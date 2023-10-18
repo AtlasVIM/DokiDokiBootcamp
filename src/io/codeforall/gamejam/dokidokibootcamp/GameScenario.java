@@ -1,6 +1,7 @@
 package io.codeforall.gamejam.dokidokibootcamp;
 
 import io.codeforall.gamejam.dokidokibootcamp.controls.Controls;
+import io.codeforall.gamejam.dokidokibootcamp.gameobjects.Character;
 import io.codeforall.gamejam.dokidokibootcamp.gameobjects.CharacterMike;
 import io.codeforall.gamejam.dokidokibootcamp.gameobjects.CharacterNozk;
 import io.codeforall.gamejam.dokidokibootcamp.scenes.*;
@@ -39,17 +40,11 @@ public class GameScenario {
         paragraph1.delete();
     }
 
-    public void nozkdraw() {
+
+    public void drawCharacter(Character c) {
         nameText.delete();
         textbox.delete();
-        nozk.draw();
-        textbox.draw();
-        nameText.draw();
-    }
-    public void mikedraw() {
-        nameText.delete();
-        textbox.delete();
-        mike.draw();
+        c.draw();
         textbox.draw();
         nameText.draw();
     }
@@ -121,7 +116,7 @@ public class GameScenario {
         clearText();
 
         mike.delete();
-        nozkdraw();
+        drawCharacter(nozk);
         paragraph1.setDialogue("And Nozk is such a goofball...");
         waitForInput();
         clearText();
@@ -157,7 +152,7 @@ public class GameScenario {
         Scene.load("resources/cfa_metropolis.jpg");
         clearText();
 
-        nozkdraw();
+        drawCharacter(nozk);
         changeName("NOZK");
         paragraph1.setDialogue("Hello cadet! So glad to meet you");
         waitForInput();
@@ -178,7 +173,7 @@ public class GameScenario {
         Scene.load("resources/cfa_metropolis.jpg");
         clearText();
 
-        mikedraw();
+        drawCharacter(mike);
         changeName("MIC");
         paragraph1.setDialogue("What's up cadet? My name's MicDrop");
         waitForInput();

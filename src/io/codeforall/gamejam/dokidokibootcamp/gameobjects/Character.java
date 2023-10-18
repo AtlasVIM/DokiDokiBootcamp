@@ -6,7 +6,7 @@ public abstract class Character {
 
     private int loveLevel = 0;
 
-    Picture picture;
+    protected Picture picture;
 
     Character(Picture picture) {
         this.picture = picture;
