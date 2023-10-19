@@ -17,7 +17,7 @@ public class Game {
         Controls controls = new Controls();
         gameScenario.day1();
         gameScenario.day2();
-
+        gameScenario.day3();
     }
 
 }

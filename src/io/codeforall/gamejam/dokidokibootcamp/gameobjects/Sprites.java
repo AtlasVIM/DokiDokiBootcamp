@@ -7,7 +7,10 @@ public enum Sprites {
     MIKESAD("mikeSad.png"),
     MIKESURPRISED("mikeSurprised.png"),
     MIKEANGRY("mikeMad.png"),
-    NOZKHAPPY("nozkHappy.png");
+    NOZKHAPPY("nozkHappy.png"),
+    NOZKSAD ("nozkSad.png"),
+    NOZKSURPRISED ("nozkSurprised.png"),
+    NOZKANGRY ("nozkMad.png");
 
     private Picture sprite;
     private String path;
