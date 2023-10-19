@@ -72,7 +72,6 @@ public class GameScenario {
         day1chooseDialogue();
         transitions = Transitions.END_OF_CLASS;
         transitions.getPicture();
-        transitions.getText();
         waitForInput();
 
     }
@@ -150,6 +149,7 @@ public class GameScenario {
                 day1classroom();
                 dayChoice = "Mic";
                 dayReject = "Nozk";
+                mike.addLoveLevel();
                 break;
             case 1:
                 clearText();
@@ -157,13 +157,14 @@ public class GameScenario {
                 day1bathroom();
                 dayChoice = "Nozk";
                 dayReject = "Mic";
+                nozk.addLoveLevel();
                 break;
             default:
                 break;
         }
     }
 
-    public void dayInteraction() throws InterruptedException{
+    public void dayInteraction() throws InterruptedException {
         switch (Controls.getDialogue()) {
             case 0:
                 paragraph1.setDialogue("YES!! I think, you and I can still get along.");
@@ -235,6 +236,9 @@ public class GameScenario {
 
         paragraph1.setDialogue("A symphony written by Apollo himself enters my ears.");
         paragraph2.setDialogue("I had never heard such a beautiful sound in my life before.");
+        waitForInput();
+        clearText();
+        mike.delete();
 
     }
     /*
@@ -245,25 +249,16 @@ public class GameScenario {
 
 
     public void day2() throws InterruptedException {
-        day2setup();
         day2scenario1();
         //day2choice();
         //day2chooseDialogue();
     }
 
-    public void day2setup() { //
-        line = new ChoiceLine();
-        this.scene = new Scene("resources/codeforall_lobby.jpg");
-        this.textbox = new Textbox();
-        this.paragraph1 = new Dialogue(480, 770, "");
-        this.paragraph2 = new Dialogue(480, 810, "");
-        this.paragraph3 = new Dialogue(480, 850, "");
-        this.paragraph4 = new Dialogue(480, 890, "");
-        this.nameText = new NameText("YOU");
-    }
 
     public void day2scenario1() throws InterruptedException {
+        Scene.load("resources/codeforall_lobby.jpg");
         paragraph1.setDialogue("Last night with " + dayChoice + " was amazing...");
+        transitions.deleteTransition();
         waitForInput();
         clearText();
 
@@ -298,7 +293,6 @@ public class GameScenario {
             waitForInput();
             clearText();
 
-            nozk.delete();
             changeName("YOU");  // É preciso resolver o mau posicionamento da linha
             paragraph1.setDialogue("It's definetely pink!");
             paragraph2.setDialogue("Hmm... Black, I suppose?");
@@ -308,7 +302,6 @@ public class GameScenario {
             clearText();
             line.delete();
 
-            nozk.draw();
             textbox.draw();
             changeName("NOZK");
 
@@ -318,7 +311,6 @@ public class GameScenario {
             waitForInput();
             clearText();
 
-            mike.delete();
             changeName("YOU"); // É preciso resolver o mau posicionamento da linha
             paragraph1.setDialogue("OMG YES, I LOVE IT!");
             paragraph2.setDialogue("One piece... of what, exactly?");
@@ -328,16 +320,15 @@ public class GameScenario {
             clearText();
             line.delete();
 
-            mike.draw();
             textbox.draw();
             changeName("MIC");
         }
         dayInteraction();
 
-            /** transition end of classes! */
+        /** transition end of classes! */
 
-            changeName("YOU");
-            paragraph1.setDialogue("");
+        changeName("YOU");
+        paragraph1.setDialogue("");
 
 
         //sou eu a falar e escolho com quem vou estudar
