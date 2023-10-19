@@ -74,7 +74,7 @@ public class GameScenario {
         day1scenario1();
         day1choice();
         day1chooseDialogue();
-        transitions = Transitions.END_OF_CLASS;
+        transitions = Transitions.END_OF_DAY;
         transitions.getPicture();
         waitForInput();
 
@@ -346,6 +346,7 @@ public class GameScenario {
         clearText();
 
         if (dayReject.equals("Nozk")) {
+            changeName("NOZK");
             paragraph1.setDialogue("Do you know the colour of my soul?!");
             waitForInput();
             clearText();
@@ -367,6 +368,7 @@ public class GameScenario {
             changeName("NOZK");
 
         } else {
+            changeName("MIC");
             paragraph1.setDialogue("So... Have you ever watched One Piece?");
             waitForInput();
             clearText();
@@ -388,6 +390,9 @@ public class GameScenario {
             changeName("MIC");
         }
         day2Interaction();
+        paragraph1.setDialogue("It's time for classes to start...");
+        paragraph2.setDialogue("Ready for another exciting morning.");
+        waitForInput();
         transitions = Transitions.END_OF_CLASS;
         transitions.getPicture();
         //sou eu a falar e escolho com quem vou estudar
@@ -404,21 +409,99 @@ public class GameScenario {
 
         changeName("YOU");
         paragraph1.setDialogue("It's lunch time.");
-        paragraph2.setDialogue("Today, the morning classes were really overwhelming!");
+        paragraph2.setDialogue("The morning classes were really overwhelming!");
         waitForInput();
+        clearText();
+
+        drawCharacter(mike);
         paragraph1.setDialogue("I see Mic in the distance, sitting all alone.");
         paragraph2.setDialogue("Should I join him?");
         waitForInput();
+        clearText();
+
         paragraph1.setDialogue("YES UWU");
         paragraph2.setDialogue("I'll leave him be...");
         line.fill();
         waitForInput();
+        clearText();
+        line.delete();
+
         if(Controls.getDialogue() == 0) {
             day2luchtimeWithMic();
+            paragraph1.setDialogue("The day went on as usual...");
+            waitForInput();
+            clearText();
+        } else {
+            paragraph1.setDialogue("The day went on as usual...");
+            waitForInput();
+            clearText();
         }
+        transitions = Transitions.END_OF_CLASS;
+        transitions.getPicture();
+
+        paragraph1.setDialogue("Another day comes to an end.");
+        waitForInput();
+        clearText();
+
+        paragraph1.setDialogue("I see Nozk in the balcony smoking a funny smelling cigarette.");
+        waitForInput();
+        clearText();
+
+        paragraph1.setDialogue("Should I talk to him?");
+        waitForInput();
+        clearText();
+
+        //paragraph1
+
     }
 
-    public void day2luchtimeWithMic() {}
+    public void day2luchtimeWithMic() throws InterruptedException {
+        changeName("MIC");
+        paragraph1.setDialogue("Hey there, cadet.");
+        paragraph2.setDialogue("Come have lunch with me!");
+        waitForInput();
+        clearText();
+
+        paragraph1.setDialogue("What are you having?");
+        waitForInput();
+        clearText();
+
+        changeName("YOU");
+        paragraph1.setDialogue("WcDonald's, my favourite!!!");
+        paragraph2.setDialogue("Grilled veggies from my personal garden!");
+        line.fill();
+        waitForInput();
+        clearText();
+
+        if(Controls.getDialogue() == 0) {
+            changeName("MIC");
+            paragraph1.setDialogue("Please don't eat that poison around me...");
+            waitForInput();
+            clearText();
+
+            mike.delete();
+            changeName("YOU");
+            paragraph1.setDialogue("MIC got up and left... that's not very nice...");
+            waitForInput();
+            clearText();
+        }
+        if (Controls.getDialogue() == 1) {
+
+            mike.addLoveLevel();
+            changeName("MIC");
+            paragraph1.setDialogue("You grow your own veggies!?");
+            paragraph2.setDialogue("That's so kawaii!!!");
+            waitForInput();
+            clearText();
+
+            changeName("YOU");
+            paragraph1.setDialogue("We spent our lunch time talking about sustainability.");
+            waitForInput();
+            clearText();
+            mike.delete();
+        }
+
+    }
 /*
     public void day2choice(){ //throws InterruptedException {
         clearText();
