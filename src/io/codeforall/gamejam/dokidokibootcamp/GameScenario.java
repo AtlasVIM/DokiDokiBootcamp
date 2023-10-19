@@ -82,7 +82,7 @@ public class GameScenario {
 
     public void day1setup() { //
         line = new ChoiceLine();
-        this.scene = new Scene("resources/codeforall_lobby.jpg");
+        this.scene = new Scene("codeforall_lobby.jpg");
         this.textbox = new Textbox();
         this.paragraph1 = new Dialogue(480, 770, "Good Morning everyone");
         this.paragraph2 = new Dialogue(480, 810, "");
@@ -106,7 +106,7 @@ public class GameScenario {
         waitForInput();
         clearText();
         textbox.delete();
-        nozk = new CharacterNozk(new Picture(700, 315, "resources/dude.png"));
+        nozk = new CharacterNozk(new Picture(700, 315, "dude.png"));
         textbox.draw();
         changeName("NOZK");
         paragraph1.setDialogue("HOW'S IT GOING YOU DISGRACES!!!!");
@@ -114,7 +114,7 @@ public class GameScenario {
         clearText();
         nozk.delete();
         textbox.delete();
-        mike = new CharacterMike(new Picture(700, 315, "resources/dude1.png"));
+        mike = new CharacterMike(new Picture(700, 315, "dude1.png"));
         textbox.draw();
         changeName("MIC");
         paragraph1.setDialogue("What's up lil guys!");
@@ -150,14 +150,14 @@ public class GameScenario {
             case 0:
                 clearText();
                 line.delete();
-                day1classroom();
+                day1mic();
                 dayChoice = "Mic";
                 dayReject = "Nozk";
                 break;
             case 1:
                 clearText();
                 line.delete();
-                day1bathroom();
+                day1nozk();
                 dayChoice = "Nozk";
                 dayReject = "Mic";
                 break;
@@ -168,8 +168,8 @@ public class GameScenario {
 
 
 
-    public void day1bathroom() throws InterruptedException {
-        Scene.load("resources/cfa_metropolis.jpg");
+    public void day1nozk() throws InterruptedException {
+        Scene.load("cfa_metropolis.jpg");
         clearText();
 
         drawCharacter(nozk);
@@ -211,13 +211,15 @@ public class GameScenario {
         }
 
         clearText();
-        paragraph1.setDialogue("Anyways let's study...");
+        paragraph1.setDialogue("Anyways it's time for class!");
         waitForInput();
+        changeName("YOU");
+        paragraph1.setDialogue("We spent the rest of the day studying...");
 
     }
 
-    public void day1classroom() throws InterruptedException {
-        Scene.load("resources/cfa_metropolis.jpg");
+    public void day1mic() throws InterruptedException {
+        Scene.load("cfa_metropolis.jpg");
         clearText();
 
         drawCharacter(mike);
@@ -240,7 +242,6 @@ public class GameScenario {
             mike.addLoveLevel();
             System.out.println(mike.getLoveLevel());
             line.delete();
-            changeName("MIC");
             paragraph1.setDialogue("Mic turns on the classroom speakers"); //POR MINISAR A DAR AQUI
 
             waitForInput();
@@ -250,6 +251,7 @@ public class GameScenario {
             waitForInput();
             clearText();
             paragraph1.setDialogue("Pretty sugoi, huh...");
+            waitForInput();
         }
         if (Controls.getDialogue() == 1) {
             clearText();
@@ -261,7 +263,10 @@ public class GameScenario {
             waitForInput();
 
         }
-        paragraph1.setDialogue("Anyway let's study...");
+        paragraph1.setDialogue("Well it's time for class!");
+        waitForInput();
+        changeName("YOU");
+        paragraph1.setDialogue("We spent the rest of the day studying...");
         waitForInput();
 
     }
@@ -285,9 +290,18 @@ public class GameScenario {
                 paragraph1.setDialogue("YES!! I think, you and I can still get along.");
                 waitForInput();
                 clearText();
+                changeName("YOU");
+                paragraph1.setDialogue("I quite like this guy...");
+                paragraph2.setDialogue("Well... maybe more than \"like\"...");
+                waitForInput();
+                clearText();
                 break;
             case 1:
                 paragraph1.setDialogue("Oh... Nevermind then...");
+                waitForInput();
+                clearText();
+                changeName("YOU");
+                paragraph1.setDialogue("I think I might have disappointed him...");
                 waitForInput();
                 clearText();
                 break;
@@ -298,7 +312,7 @@ public class GameScenario {
 
     public void day2scenario1() throws InterruptedException {
         clearCharacters();
-        Scene.load("resources/codeforall_lobby.jpg");
+        Scene.load("codeforall_lobby.jpg");
         paragraph1.setDialogue("Last night with " + dayChoice + " was amazing...");
         transitions.deleteTransition();
         waitForInput();
