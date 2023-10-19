@@ -4,6 +4,7 @@ import io.codeforall.gamejam.dokidokibootcamp.controls.Controls;
 import io.codeforall.gamejam.dokidokibootcamp.gameobjects.Character;
 import io.codeforall.gamejam.dokidokibootcamp.gameobjects.CharacterMike;
 import io.codeforall.gamejam.dokidokibootcamp.gameobjects.CharacterNozk;
+import io.codeforall.gamejam.dokidokibootcamp.gameobjects.Sprites;
 import io.codeforall.gamejam.dokidokibootcamp.scenes.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -36,6 +37,7 @@ public class GameScenario {
         Thread.sleep(1000);
         while (!gameStatus) {
         }
+        clearText();
     }
 
     public void clearText() {
@@ -97,29 +99,24 @@ public class GameScenario {
         paragraph1.setDialogue("Today is the first day of your lives as programmers.");
         paragraph2.setDialogue("Isn't it exciting!?");
         waitForInput();
-        clearText();
         paragraph1.setDialogue("Are you ready to meet your Master Coders?");
         waitForInput();
-        clearText();
         nameText.setName("YOU");
         paragraph1.setDialogue("It was at this time... my heart skipped a beat...");
         waitForInput();
-        clearText();
         textbox.delete();
-        nozk = new CharacterNozk(new Picture(700, 315, "dude.png"));
+        nozk = new CharacterNozk(Sprites.NOZKHAPPY.getSprite());
         textbox.draw();
         changeName("NOZK");
         paragraph1.setDialogue("HOW'S IT GOING YOU DISGRACES!!!!");
         waitForInput();
-        clearText();
         nozk.delete();
         textbox.delete();
-        mike = new CharacterMike(new Picture(700, 315, "dude1.png"));
+        mike = new CharacterMike(Sprites.MIKEHAPPY.getSprite());
         textbox.draw();
         changeName("MIC");
         paragraph1.setDialogue("What's up lil guys!");
         waitForInput();
-        clearText();
     }
 
     public void day1choice() throws InterruptedException {
@@ -127,13 +124,11 @@ public class GameScenario {
         changeName("YOU");
         paragraph1.setDialogue("Mic is so cool and mysterious...");
         waitForInput();
-        clearText();
 
         mike.delete();
         drawCharacter(nozk);
         paragraph1.setDialogue("And Nozk is such a goofball...");
         waitForInput();
-        clearText();
 
         nozk.delete();
         paragraph1.setDialogue("They are both so sugoi....");
@@ -179,7 +174,6 @@ public class GameScenario {
 
         paragraph1.setDialogue("Do you wanna see a magic trick?");
         waitForInput();
-        clearText();
 
         changeName("YOU");
         paragraph1.setDialogue("Magic? Sure!");
@@ -215,6 +209,7 @@ public class GameScenario {
         waitForInput();
         changeName("YOU");
         paragraph1.setDialogue("We spent the rest of the day studying...");
+        waitForInput();
 
     }
 
@@ -230,7 +225,6 @@ public class GameScenario {
         paragraph1.setDialogue("Do you like hip-hop?");
 
         waitForInput();
-        clearText();
 
         changeName("YOU");
         paragraph1.setDialogue("Hell yeah!");
@@ -238,7 +232,6 @@ public class GameScenario {
         line.fill();
         waitForInput();
         if (Controls.getDialogue() == 0) {
-            clearText();
             mike.addLoveLevel();
             System.out.println(mike.getLoveLevel());
             line.delete();
@@ -249,12 +242,10 @@ public class GameScenario {
             paragraph1.setDialogue("A symphony written by Apollo himself enters my ears.");
             paragraph2.setDialogue("I had never heard such a beautiful sound in my life before.");
             waitForInput();
-            clearText();
             paragraph1.setDialogue("Pretty sugoi, huh...");
             waitForInput();
         }
         if (Controls.getDialogue() == 1) {
-            clearText();
             line.delete();
 
             changeName("MIC");
@@ -289,21 +280,17 @@ public class GameScenario {
             case 0:
                 paragraph1.setDialogue("YES!! I think, you and I can still get along.");
                 waitForInput();
-                clearText();
                 changeName("YOU");
                 paragraph1.setDialogue("I quite like this guy...");
                 paragraph2.setDialogue("Well... maybe more than \"like\"...");
                 waitForInput();
-                clearText();
                 break;
             case 1:
                 paragraph1.setDialogue("Oh... Nevermind then...");
                 waitForInput();
-                clearText();
                 changeName("YOU");
                 paragraph1.setDialogue("I think I might have disappointed him...");
                 waitForInput();
-                clearText();
                 break;
             default:
                 break;
@@ -316,15 +303,12 @@ public class GameScenario {
         paragraph1.setDialogue("Last night with " + dayChoice + " was amazing...");
         transitions.deleteTransition();
         waitForInput();
-        clearText();
 
         paragraph1.setDialogue("I've never felt so connected with anyone before");
         waitForInput();
-        clearText();
 
         paragraph1.setDialogue("Suddenly, I feel a throbbing touch on my shoulder.");
         waitForInput();
-        clearText();
 
         nameText.setName(dayReject);
         if (dayReject.equals("Nozk")) {
@@ -338,18 +322,15 @@ public class GameScenario {
         paragraph1.setDialogue("Hey... I didn't see you yesterday...");
         paragraph2.setDialogue("Is everything alright?");
         waitForInput();
-        clearText();
 
         changeName("YOU");
         paragraph1.setDialogue("Before I could respond, " + dayReject + " passionately interrupted me.");
         waitForInput();
-        clearText();
 
         if (dayReject.equals("Nozk")) {
             changeName("NOZK");
             paragraph1.setDialogue("Do you know the colour of my soul?!");
             waitForInput();
-            clearText();
 
             changeName("YOU");  // É preciso resolver o mau posicionamento da linha
             paragraph1.setDialogue("It's definitely pink!");
@@ -361,7 +342,6 @@ public class GameScenario {
                 nozk.addLoveLevel();
                 System.out.println(nozk.getLoveLevel());
             }
-            clearText();
             line.delete();
 
             textbox.draw();
@@ -371,7 +351,6 @@ public class GameScenario {
             changeName("MIC");
             paragraph1.setDialogue("So... Have you ever watched One Piece?");
             waitForInput();
-            clearText();
 
             changeName("YOU"); // É preciso resolver o mau posicionamento da linha
             paragraph1.setDialogue("OMG YES, I LOVE IT!");
@@ -383,7 +362,6 @@ public class GameScenario {
                 mike.addLoveLevel();
                 System.out.println(mike.getLoveLevel());
             }
-            clearText();
             line.delete();
 
             textbox.draw();
@@ -403,7 +381,6 @@ public class GameScenario {
 
     public void day2lunchtime() throws InterruptedException {
         clearCharacters();
-        clearText();
         waitForInput();
         transitions.deleteTransition();
 
@@ -411,47 +388,46 @@ public class GameScenario {
         paragraph1.setDialogue("It's lunch time.");
         paragraph2.setDialogue("The morning classes were really overwhelming!");
         waitForInput();
-        clearText();
 
         drawCharacter(mike);
         paragraph1.setDialogue("I see Mic in the distance, sitting all alone.");
         paragraph2.setDialogue("Should I join him?");
         waitForInput();
-        clearText();
 
         paragraph1.setDialogue("YES UWU");
         paragraph2.setDialogue("I'll leave him be...");
         line.fill();
         waitForInput();
-        clearText();
         line.delete();
 
         if(Controls.getDialogue() == 0) {
             day2luchtimeWithMic();
-            paragraph1.setDialogue("The day went on as usual...");
-            waitForInput();
-            clearText();
-        } else {
-            paragraph1.setDialogue("The day went on as usual...");
-            waitForInput();
-            clearText();
         }
+        paragraph1.setDialogue("The day went on as usual...");
+        waitForInput();
+
         transitions = Transitions.END_OF_CLASS;
         transitions.getPicture();
+        waitForInput();
+        transitions.deleteTransition();
+
 
         paragraph1.setDialogue("Another day comes to an end.");
         waitForInput();
-        clearText();
 
         paragraph1.setDialogue("I see Nozk in the balcony smoking a funny smelling cigarette.");
         waitForInput();
-        clearText();
 
         paragraph1.setDialogue("Should I talk to him?");
         waitForInput();
-        clearText();
 
-        //paragraph1
+        paragraph1.setDialogue("Yes, and maybe smoke too >.<");
+        paragraph2.setDialogue("No, I HATE smoking...");
+        line.fill();
+        waitForInput();
+
+
+
 
     }
 
@@ -460,30 +436,26 @@ public class GameScenario {
         paragraph1.setDialogue("Hey there, cadet.");
         paragraph2.setDialogue("Come have lunch with me!");
         waitForInput();
-        clearText();
 
         paragraph1.setDialogue("What are you having?");
         waitForInput();
-        clearText();
 
         changeName("YOU");
         paragraph1.setDialogue("WcDonald's, my favourite!!!");
         paragraph2.setDialogue("Grilled veggies from my personal garden!");
         line.fill();
         waitForInput();
-        clearText();
+        line.delete();
 
         if(Controls.getDialogue() == 0) {
             changeName("MIC");
             paragraph1.setDialogue("Please don't eat that poison around me...");
             waitForInput();
-            clearText();
 
             mike.delete();
             changeName("YOU");
             paragraph1.setDialogue("MIC got up and left... that's not very nice...");
-            waitForInput();
-            clearText();
+
         }
         if (Controls.getDialogue() == 1) {
 
@@ -492,14 +464,12 @@ public class GameScenario {
             paragraph1.setDialogue("You grow your own veggies!?");
             paragraph2.setDialogue("That's so kawaii!!!");
             waitForInput();
-            clearText();
 
             changeName("YOU");
             paragraph1.setDialogue("We spent our lunch time talking about sustainability.");
-            waitForInput();
-            clearText();
-            mike.delete();
         }
+        waitForInput();
+        mike.delete();
 
     }
 /*
