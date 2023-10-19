@@ -7,4 +7,9 @@ public class CharacterNozk extends Character {
     public CharacterNozk(Picture picture) {
         super(picture);
     }
+
+    @Override
+    public String toString() {
+        return "NOZK";
+    }
 }

@@ -9,4 +9,9 @@ public class CharacterMike extends Character{
     public CharacterMike(Picture picture) {
         super(picture);
     }
+
+    @Override
+    public String toString() {
+        return "MIC";
+    }
 }

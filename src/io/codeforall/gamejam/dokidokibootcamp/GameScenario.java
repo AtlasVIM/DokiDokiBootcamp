@@ -53,6 +53,10 @@ public class GameScenario {
         textbox.draw();
         nameText.draw();
     }
+    public void clearCharacters() {
+        nozk.delete();
+        mike.delete();
+    }
 
     public void changeName(String s) {
         nameText.delete();
@@ -149,7 +153,6 @@ public class GameScenario {
                 day1classroom();
                 dayChoice = "Mic";
                 dayReject = "Nozk";
-                mike.addLoveLevel();
                 break;
             case 1:
                 clearText();
@@ -157,29 +160,12 @@ public class GameScenario {
                 day1bathroom();
                 dayChoice = "Nozk";
                 dayReject = "Mic";
-                nozk.addLoveLevel();
                 break;
             default:
                 break;
         }
     }
 
-    public void dayInteraction() throws InterruptedException {
-        switch (Controls.getDialogue()) {
-            case 0:
-                paragraph1.setDialogue("YES!! I think, you and I can still get along.");
-                waitForInput();
-                clearText();
-                break;
-            case 1:
-                paragraph1.setDialogue("Oh... Nevermind then...");
-                waitForInput();
-                clearText();
-                break;
-            default:
-                break;
-        }
-    }
 
 
     public void day1bathroom() throws InterruptedException {
@@ -204,6 +190,29 @@ public class GameScenario {
         clearText();
         line.delete();
 
+        if(Controls.getDialogue()==0) {
+            nozk.addLoveLevel();
+            System.out.println(nozk.getLoveLevel());
+            changeName("NOZK");
+            paragraph1.setDialogue("Check this out.");
+            waitForInput();
+            //inserir sprites...
+
+            changeName("YOU");
+            paragraph1.setDialogue("I was amazed beyond comprehension.");
+            paragraph2.setDialogue("How the hell did he do that!?!?");
+            waitForInput();
+        }
+
+        if (Controls.getDialogue() == 1) {
+            changeName("NOZK");
+            paragraph1.setDialogue("Booooooo...");
+            waitForInput();
+        }
+
+        clearText();
+        paragraph1.setDialogue("Anyways let's study...");
+        waitForInput();
 
     }
 
@@ -225,20 +234,35 @@ public class GameScenario {
         paragraph1.setDialogue("Hell yeah!");
         paragraph2.setDialogue("Nah, not a big fan...");
         line.fill();
-
         waitForInput();
-        clearText();
-        line.delete();
+        if (Controls.getDialogue() == 0) {
+            clearText();
+            mike.addLoveLevel();
+            System.out.println(mike.getLoveLevel());
+            line.delete();
+            changeName("MIC");
+            paragraph1.setDialogue("Mic turns on the classroom speakers"); //POR MINISAR A DAR AQUI
 
-        paragraph1.setDialogue("Mic turns on the classroom speakers"); //POR MINISAR A DAR AQUI
+            waitForInput();
 
+            paragraph1.setDialogue("A symphony written by Apollo himself enters my ears.");
+            paragraph2.setDialogue("I had never heard such a beautiful sound in my life before.");
+            waitForInput();
+            clearText();
+            paragraph1.setDialogue("Pretty sugoi, huh...");
+        }
+        if (Controls.getDialogue() == 1) {
+            clearText();
+            line.delete();
+
+            changeName("MIC");
+            paragraph1.setDialogue("Oh... I guess we just have different tastes...");
+
+            waitForInput();
+
+        }
+        paragraph1.setDialogue("Anyway let's study...");
         waitForInput();
-
-        paragraph1.setDialogue("A symphony written by Apollo himself enters my ears.");
-        paragraph2.setDialogue("I had never heard such a beautiful sound in my life before.");
-        waitForInput();
-        clearText();
-        mike.delete();
 
     }
     /*
@@ -247,15 +271,33 @@ public class GameScenario {
     insert transition!!!!!!!!!!
      */
 
-
+/*
+=== DAY 2 ===
+ */
     public void day2() throws InterruptedException {
         day2scenario1();
-        //day2choice();
-        //day2chooseDialogue();
+        day2lunchtime();
     }
 
+    public void day2Interaction() throws InterruptedException {
+        switch (Controls.getDialogue()) {
+            case 0:
+                paragraph1.setDialogue("YES!! I think, you and I can still get along.");
+                waitForInput();
+                clearText();
+                break;
+            case 1:
+                paragraph1.setDialogue("Oh... Nevermind then...");
+                waitForInput();
+                clearText();
+                break;
+            default:
+                break;
+        }
+    }
 
     public void day2scenario1() throws InterruptedException {
+        clearCharacters();
         Scene.load("resources/codeforall_lobby.jpg");
         paragraph1.setDialogue("Last night with " + dayChoice + " was amazing...");
         transitions.deleteTransition();
@@ -272,9 +314,11 @@ public class GameScenario {
 
         nameText.setName(dayReject);
         if (dayReject.equals("Nozk")) {
+            changeName("NOZK");
             drawCharacter(nozk);
 
         } else {
+            changeName("MIC");
             drawCharacter(mike);
         }
         paragraph1.setDialogue("Hey... I didn't see you yesterday...");
@@ -288,17 +332,20 @@ public class GameScenario {
         clearText();
 
         if (dayReject.equals("Nozk")) {
-            changeName("NOZK");
             paragraph1.setDialogue("Do you know the colour of my soul?!");
             waitForInput();
             clearText();
 
             changeName("YOU");  // É preciso resolver o mau posicionamento da linha
-            paragraph1.setDialogue("It's definetely pink!");
+            paragraph1.setDialogue("It's definitely pink!");
             paragraph2.setDialogue("Hmm... Black, I suppose?");
             line.delete();
             line.fill();
             waitForInput();
+            if (Controls.getDialogue() == 0) {
+                nozk.addLoveLevel();
+                System.out.println(nozk.getLoveLevel());
+            }
             clearText();
             line.delete();
 
@@ -306,7 +353,6 @@ public class GameScenario {
             changeName("NOZK");
 
         } else {
-            changeName("MIC");
             paragraph1.setDialogue("So... Have you ever watched One Piece?");
             waitForInput();
             clearText();
@@ -317,25 +363,48 @@ public class GameScenario {
             line.delete();
             line.fill();
             waitForInput();
+            if (Controls.getDialogue() == 0) {
+                mike.addLoveLevel();
+                System.out.println(mike.getLoveLevel());
+            }
             clearText();
             line.delete();
 
             textbox.draw();
             changeName("MIC");
         }
-        dayInteraction();
-
-        /** transition end of classes! */
-
-        changeName("YOU");
-        paragraph1.setDialogue("");
-
-
+        day2Interaction();
+        transitions = Transitions.END_OF_CLASS;
+        transitions.getPicture();
         //sou eu a falar e escolho com quem vou estudar
         //o dia seguinte começa no cenário da pessoa que se escolheu estudar
         //no final do dia repensa-se
 
     }
+
+    public void day2lunchtime() throws InterruptedException {
+        clearCharacters();
+        clearText();
+        waitForInput();
+        transitions.deleteTransition();
+
+        changeName("YOU");
+        paragraph1.setDialogue("It's lunch time.");
+        paragraph2.setDialogue("Today, the morning classes were really overwhelming!");
+        waitForInput();
+        paragraph1.setDialogue("I see Mic in the distance, sitting all alone.");
+        paragraph2.setDialogue("Should I join him?");
+        waitForInput();
+        paragraph1.setDialogue("YES UWU");
+        paragraph2.setDialogue("I'll leave him be...");
+        line.fill();
+        waitForInput();
+        if(Controls.getDialogue() == 0) {
+            day2luchtimeWithMic();
+        }
+    }
+
+    public void day2luchtimeWithMic() {}
 /*
     public void day2choice(){ //throws InterruptedException {
         clearText();
