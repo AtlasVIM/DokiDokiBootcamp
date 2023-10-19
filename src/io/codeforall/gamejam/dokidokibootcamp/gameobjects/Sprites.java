@@ -10,11 +10,16 @@ public enum Sprites {
     NOZKHAPPY("nozkHappy.png");
 
     private Picture sprite;
+    private String path;
     Sprites(String s) {
         sprite = new Picture(500,100,s);
+        this.path = s;
     }
 
     public Picture getSprite() {
         return sprite;
+    }
+    public String getExpression() {
+        return path;
     }
 }

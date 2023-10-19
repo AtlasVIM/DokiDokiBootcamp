@@ -48,9 +48,10 @@ public class GameScenario {
     }
 
 
-    public void drawCharacter(Character c) {
+    public void drawCharacter(Character c, Sprites s) {
         nameText.delete();
         textbox.delete();
+        c.setPicture(s.getExpression());
         c.draw();
         textbox.draw();
         nameText.draw();
@@ -63,6 +64,11 @@ public class GameScenario {
     public void changeName(String s) {
         nameText.delete();
         nameText.setName(s);
+    }
+
+    public void resetExpressions() {
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+        mike.setPicture(Sprites.MIKEHAPPY.getExpression());
     }
 
 
@@ -126,7 +132,7 @@ public class GameScenario {
         waitForInput();
 
         mike.delete();
-        drawCharacter(nozk);
+        drawCharacter(nozk,Sprites.NOZKHAPPY);
         paragraph1.setDialogue("And Nozk is such a goofball...");
         waitForInput();
 
@@ -167,7 +173,7 @@ public class GameScenario {
         Scene.load("cfa_metropolis.jpg");
         clearText();
 
-        drawCharacter(nozk);
+        drawCharacter(nozk, Sprites.NOZKHAPPY);
         changeName("NOZK");
         paragraph1.setDialogue("Hello cadet! So glad to meet you");
         waitForInput();
@@ -217,7 +223,7 @@ public class GameScenario {
         Scene.load("cfa_metropolis.jpg");
         clearText();
 
-        drawCharacter(mike);
+        drawCharacter(mike, Sprites.MIKEHAPPY);
         changeName("MIC");
         paragraph1.setDialogue("What's up cadet? My name's MicDrop");
         waitForInput();
@@ -249,6 +255,7 @@ public class GameScenario {
             line.delete();
 
             changeName("MIC");
+            mike.setPicture(Sprites.MIKESAD.getExpression());
             paragraph1.setDialogue("Oh... I guess we just have different tastes...");
 
             waitForInput();
@@ -299,6 +306,7 @@ public class GameScenario {
 
     public void day2scenario1() throws InterruptedException {
         clearCharacters();
+
         Scene.load("codeforall_lobby.jpg");
         paragraph1.setDialogue("Last night with " + dayChoice + " was amazing...");
         transitions.deleteTransition();
@@ -313,11 +321,11 @@ public class GameScenario {
         nameText.setName(dayReject);
         if (dayReject.equals("Nozk")) {
             changeName("NOZK");
-            drawCharacter(nozk);
+            drawCharacter(nozk,Sprites.NOZKHAPPY);
 
         } else {
             changeName("MIC");
-            drawCharacter(mike);
+            drawCharacter(mike, Sprites.MIKEHAPPY);
         }
         paragraph1.setDialogue("Hey... I didn't see you yesterday...");
         paragraph2.setDialogue("Is everything alright?");
@@ -342,6 +350,9 @@ public class GameScenario {
                 nozk.addLoveLevel();
                 System.out.println(nozk.getLoveLevel());
             }
+            if (Controls.getDialogue() == 1) {
+                nozk.setPicture(Sprites.NOZKHAPPY.getExpression()); /// Mudar para triste.
+            }
             line.delete();
 
             textbox.draw();
@@ -361,6 +372,9 @@ public class GameScenario {
             if (Controls.getDialogue() == 0) {
                 mike.addLoveLevel();
                 System.out.println(mike.getLoveLevel());
+            }
+            if (Controls.getDialogue() == 1) {
+                mike.setPicture(Sprites.MIKESAD.getExpression());
             }
             line.delete();
 
@@ -389,7 +403,7 @@ public class GameScenario {
         paragraph2.setDialogue("The morning classes were really overwhelming!");
         waitForInput();
 
-        drawCharacter(mike);
+        drawCharacter(mike, Sprites.MIKEHAPPY);
         paragraph1.setDialogue("I see Mic in the distance, sitting all alone.");
         paragraph2.setDialogue("Should I join him?");
         waitForInput();
@@ -415,6 +429,7 @@ public class GameScenario {
         paragraph1.setDialogue("Another day comes to an end.");
         waitForInput();
 
+        drawCharacter(nozk, Sprites.NOZKHAPPY);
         paragraph1.setDialogue("I see Nozk in the balcony smoking a funny smelling cigarette.");
         waitForInput();
 
@@ -425,6 +440,10 @@ public class GameScenario {
         paragraph2.setDialogue("No, I HATE smoking...");
         line.fill();
         waitForInput();
+        line.delete();
+        if(Controls.getDialogue() == 0) {
+            day2balconyWithNozk();
+        }
 
 
 
@@ -449,6 +468,7 @@ public class GameScenario {
 
         if(Controls.getDialogue() == 0) {
             changeName("MIC");
+            mike.setPicture(Sprites.MIKEANGRY.getExpression());
             paragraph1.setDialogue("Please don't eat that poison around me...");
             waitForInput();
 
@@ -461,6 +481,7 @@ public class GameScenario {
 
             mike.addLoveLevel();
             changeName("MIC");
+            mike.setPicture(Sprites.MIKESURPRISED.getExpression());
             paragraph1.setDialogue("You grow your own veggies!?");
             paragraph2.setDialogue("That's so kawaii!!!");
             waitForInput();
@@ -472,7 +493,20 @@ public class GameScenario {
         mike.delete();
 
     }
-/*
+
+    public void day2balconyWithNozk() throws InterruptedException{
+        changeName("NOZK");
+        paragraph1.setDialogue("Hey cadet, you're just in time!");
+        waitForInput();
+        paragraph1.setDialogue("I was just preparing for my breakdance competition!");
+        paragraph2.setDialogue("CHECK THIS OUT!!!");
+        waitForInput();
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression()); // por varias expressoes a rodar.
+        waitForInput();
+
+    }
+
+    /*
     public void day2choice(){ //throws InterruptedException {
         clearText();
         changeName("YOU");

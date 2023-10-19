@@ -17,7 +17,6 @@ public enum Transitions {
         this.picture.draw();
     }
 
-
     public void deleteTransition(){
         picture.delete();
     }
