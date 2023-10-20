@@ -178,7 +178,7 @@ public class GameScenario {
 
         drawCharacter(nozk, Sprites.NOZKHAPPY);
         changeName("NOZK");
-        paragraph1.setDialogue("Hello cadet! So glad to meet you");
+        paragraph1.setDialogue("Hello cadet! So glad to meet you!");
         waitForInput();
 
         paragraph1.setDialogue("Do you wanna see a magic trick?");
@@ -186,7 +186,7 @@ public class GameScenario {
 
         changeName("YOU");
         paragraph1.setDialogue("Magic? Sure!");
-        paragraph2.setDialogue("I'm not a big fan of magic tricks.");
+        paragraph2.setDialogue("Only if you can make yourself disappear! BAKA");
         line.fill();
 
         waitForInput();
@@ -210,7 +210,7 @@ public class GameScenario {
         if (Controls.getDialogue() == 1) {
             changeName("NOZK");
             nozk.setPicture(Sprites.NOZKSAD.getExpression());
-            paragraph1.setDialogue("Booooooo...");
+            paragraph1.setDialogue("Damn, you disgrace...");
             waitForInput();
         }
 
@@ -229,7 +229,7 @@ public class GameScenario {
 
         drawCharacter(mike, Sprites.MIKEHAPPY);
         changeName("MIC");
-        paragraph1.setDialogue("What's up cadet? My name's MicDrop");
+        paragraph1.setDialogue("What's up cadet? My name's MicDrop!");
         waitForInput();
 
         paragraph1.setDialogue("Do you like hip-hop?");
@@ -260,7 +260,8 @@ public class GameScenario {
 
             changeName("MIC");
             mike.setPicture(Sprites.MIKESAD.getExpression());
-            paragraph1.setDialogue("Oh... I guess we just have different tastes...");
+            paragraph1.setDialogue("Oh... I guess you just suck then?");
+            paragraph2.setDialogue("Average tiktok enthusiast, cringe smh T_T");
 
             waitForInput();
 
@@ -269,6 +270,8 @@ public class GameScenario {
         waitForInput();
         changeName("YOU");
         paragraph1.setDialogue("We spent the rest of the day studying...");
+        paragraph2.setDialogue("Baka data streams, just copy the damn file with right click!");
+        paragraph3.setDialogue("T_T");
         waitForInput();
 
     }
@@ -293,11 +296,11 @@ public class GameScenario {
                 waitForInput();
                 changeName("YOU");
                 paragraph1.setDialogue("I quite like this guy...");
-                paragraph2.setDialogue("Well... maybe more than \"like\"...");
+                paragraph2.setDialogue("Well... maybe more than \"like\"...uwu");
                 waitForInput();
                 break;
             case 1:
-                paragraph1.setDialogue("Oh... Nevermind then...");
+                paragraph1.setDialogue("Jesus, alright then...");
                 waitForInput();
                 changeName("YOU");
                 paragraph1.setDialogue("I think I might have disappointed him...");
@@ -316,7 +319,7 @@ public class GameScenario {
         transitions.deleteTransition();
         waitForInput();
 
-        paragraph1.setDialogue("I've never felt so connected with anyone before");
+        paragraph1.setDialogue("I've never felt so connected with anyone before!");
         waitForInput();
 
         paragraph1.setDialogue("Suddenly, I feel a throbbing touch on my shoulder.");
@@ -346,7 +349,7 @@ public class GameScenario {
 
             changeName("YOU");  // É preciso resolver o mau posicionamento da linha
             paragraph1.setDialogue("It's definitely pink!");
-            paragraph2.setDialogue("Hmm... Black, I suppose?");
+            paragraph2.setDialogue("Hmm... are you sure you have one? ");
             line.delete();
             line.fill();
             waitForInput();
@@ -407,6 +410,7 @@ public class GameScenario {
         changeName("YOU");
         paragraph1.setDialogue("It's lunch time.");
         paragraph2.setDialogue("The morning classes were really overwhelming!");
+        paragraph3.setDialogue("All my homies hate iterators x_x");
         waitForInput();
 
         drawCharacter(mike, Sprites.MIKEHAPPY);
@@ -443,7 +447,7 @@ public class GameScenario {
         waitForInput();
 
         paragraph1.setDialogue("Yes, and maybe smoke too >.<");
-        paragraph2.setDialogue("No, I HATE smoking...");
+        paragraph2.setDialogue("No, I HATE smoking! BAKA!");
         line.fill();
         waitForInput();
         line.delete();
@@ -466,7 +470,7 @@ public class GameScenario {
     //------------------------------------------INTERAÇOES -------------------------------------------
     public void day2luchtimeWithMic() throws InterruptedException {
         changeName("MIC");
-        paragraph1.setDialogue("Hey there, cadet.");
+        paragraph1.setDialogue("My favorite cadet!");
         paragraph2.setDialogue("Come have lunch with me!");
         waitForInput();
 
@@ -474,8 +478,8 @@ public class GameScenario {
         waitForInput();
 
         changeName("YOU");
-        paragraph1.setDialogue("WcDonald's, my favourite!!!");
-        paragraph2.setDialogue("Grilled veggies from my personal garden!");
+        paragraph1.setDialogue("WcDoland's, my favourite!!! UwU");
+        paragraph2.setDialogue("Grilled veggies from my personal garden! >.<");
         line.fill();
         waitForInput();
         line.delete();
@@ -484,11 +488,13 @@ public class GameScenario {
             changeName("MIC");
             mike.setPicture(Sprites.MIKEANGRY.getExpression());
             paragraph1.setDialogue("Don't you eat that poison around me!");
+            paragraph2.setDialogue("DON'T YOU KNOW YOU'RE KILLING THE PLANET???");
             waitForInput();
 
             mike.delete();
             changeName("YOU");
-            paragraph1.setDialogue("MIC got up and left... that's not very nice...");
+            paragraph1.setDialogue("MIC got up, spit on me and left... that's not very nice...");
+            paragraph2.setDialogue("Did I say something wrong? T_T");
 
         }
         if (Controls.getDialogue() == 1) {
@@ -502,6 +508,7 @@ public class GameScenario {
 
             changeName("YOU");
             paragraph1.setDialogue("We spent our lunch time discussing woke topics.");
+            paragraph2.setDialogue("Mic is right! Big Veg is monopolizing the industry!");
         }
         waitForInput();
         mike.delete();
@@ -512,7 +519,7 @@ public class GameScenario {
         changeName("NOZK");
         paragraph1.setDialogue("Hey cadet, you're just in time!");
         waitForInput();
-        paragraph1.setDialogue("I was just preparing for my breakdance competition!");
+        paragraph1.setDialogue("I was just preparing for my k-pop dance competition!");
         paragraph2.setDialogue("CHECK THIS OUT!!!");
         waitForInput();
         nozk.setPicture(Sprites.NOZKHAPPY.getExpression()); // por varias expressoes a rodar.
@@ -527,12 +534,12 @@ public class GameScenario {
 
         changeName("NOZK");
         nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
-        paragraph1.setDialogue("So? What do you think?");
+        paragraph1.setDialogue("So? Pretty sugoi, huh?");
         waitForInput();
 
         changeName("YOU");
         paragraph1.setDialogue("I think I just witnessed the rebirth of Michael Jackson O.O");
-        paragraph2.setDialogue("I'll just pretend this didn't happen...");
+        paragraph2.setDialogue("YAMETEEE, how do I delete what I just saw????");
         line.fill();
         waitForInput();
         line.delete();
@@ -541,13 +548,14 @@ public class GameScenario {
             nozk.addLoveLevel();
             nozk.setPicture(Sprites.NOZKSURPRISED.getExpression());
             changeName("NOZK");
-            paragraph1.setDialogue("Yeah dude! I'm so freakin' cool!");
+            paragraph1.setDialogue("Yeah dude! I'm so sugoi desu neeeeeeee!!");
+            paragraph2.setDialogue("You should see what else I can do... UwU");
             waitForInput();
         }
         if (Controls.getDialogue() == 1) {
             nozk.setPicture(Sprites.NOZKANGRY.getExpression());
             changeName("NOZK");
-            paragraph1.setDialogue("You don't get my magnificence...");
+            paragraph1.setDialogue("You don't get my magnificence... hella cringe, cadet.");
             waitForInput();
         }
         nozk.delete();
