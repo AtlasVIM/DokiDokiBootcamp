@@ -275,14 +275,9 @@ public class GameScenario {
         waitForInput();
 
     }
-    /*
-    === DAY 1 END ===
-
-    insert transition!!!!!!!!!!
-     */
 
     /*
-    === DAY 2 ===
+   =========================================== DAY 2 ================================================
      */
     public void day2() throws InterruptedException {
         day2scenario1();
@@ -463,9 +458,6 @@ public class GameScenario {
         transitions.getPicture();
     }
 
-    public void day3() {
-
-    }
 
     //------------------------------------------INTERAÇOES -------------------------------------------
     public void day2luchtimeWithMic() throws InterruptedException {
@@ -522,14 +514,22 @@ public class GameScenario {
         paragraph1.setDialogue("I was just preparing for my k-pop dance competition!");
         paragraph2.setDialogue("CHECK THIS OUT!!!");
         waitForInput();
-        nozk.setPicture(Sprites.NOZKHAPPY.getExpression()); // por varias expressoes a rodar.
-        waitForInput();
 
         changeName("YOU");
         paragraph1.setDialogue("Nothing prepared me for what I witnessed");
         paragraph2.setDialogue("In fact, I think nothing ever could...");
         paragraph3.setDialogue("The moves... the swag... the sugoi desu ne kawaii...");
+        Thread.sleep(500);
         paragraph4.setDialogue("I was truly flabbergasted...");
+        while (gameStatus) {
+            nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+            nozk.setPicture(Sprites.NOZKANGRY.getExpression());
+            nozk.setPicture(Sprites.NOZKSAD.getExpression());
+            nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+            nozk.setPicture(Sprites.NOZKSURPRISED.getExpression());
+            nozk.setPicture(Sprites.NOZKSAD.getExpression());
+            nozk.setPicture(Sprites.NOZKANGRY.getExpression());
+        }
         waitForInput();
 
         changeName("NOZK");
@@ -560,6 +560,19 @@ public class GameScenario {
         }
         nozk.delete();
         changeName("YOU");
+
+    }
+
+//-------------------------------------------------------------------------------------------------------
+    /*
+    ============================================ DAY 3 ==================================================
+     */
+
+    public void day3() {
+        day3scenario1();
+    }
+
+    public void day3scenario1() {
 
     }
 
