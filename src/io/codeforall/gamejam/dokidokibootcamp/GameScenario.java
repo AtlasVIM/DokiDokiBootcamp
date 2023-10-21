@@ -573,6 +573,8 @@ public class GameScenario {
     }
 
     public void day3scenario1() {
+        Scene.load("codeforall_lobby.jpg");
+
 
     }
 
