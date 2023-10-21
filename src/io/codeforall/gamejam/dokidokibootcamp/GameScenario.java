@@ -1098,6 +1098,7 @@ public class GameScenario {
         waitForInput();
         if (nozk.getLoveLevel() < 3 && mike.getLoveLevel() < 3) {
             togetherEnding();
+            return;
         }
         if (nozk.getLoveLevel() < mike.getLoveLevel()) {
             micEnding();
@@ -1118,8 +1119,8 @@ public class GameScenario {
         paragraph2.setDialogue("I feel my sugoi levels going down...");
         waitForInput();
 
-        mike.getPicture().translate(50,0);
-        nozk.getPicture().translate(-50,0);
+        mike.getPicture().translate(150,0);
+        nozk.getPicture().translate(-150,0);
         drawCharacter(nozk, Sprites.NOZKHORNY);
         drawCharacter(mike, Sprites.MIKEHORNY);
 
