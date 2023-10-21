@@ -240,8 +240,8 @@ public class GameScenario {
             nozk.setPicture(Sprites.NOZKTRICK2.getExpression());
             Thread.sleep(200);
             nozk.setPicture(Sprites.NOZKTRICK3.getExpression());
-            waitForInput();
             sound.stop();
+            waitForInput();
             sound = new Sound("/dokidokiost.wav");
             sound.play();
             //inserir sprites...
@@ -417,7 +417,7 @@ public class GameScenario {
             paragraph1.setDialogue("So... Have you ever watched One Piece?");
             waitForInput();
 
-            changeName("YOU"); // É preciso resolver o mau posicionamento da linha
+            changeName("YOU");
             paragraph1.setDialogue("OMG YES, I LOVE IT!");
             paragraph2.setDialogue("One piece... of what, exactly?");
             line.delete();
@@ -441,9 +441,7 @@ public class GameScenario {
         waitForInput();
         transitions = Transitions.END_OF_CLASS;
         transitions.getPicture();
-        //sou eu a falar e escolho com quem vou estudar
-        //o dia seguinte começa no cenário da pessoa que se escolheu estudar
-        //no final do dia repensa-se
+
 
     }
 
@@ -620,8 +618,7 @@ public class GameScenario {
         changeName("YOU");
         paragraph1.setDialogue("Nothing prepared me for what I witnessed");
         paragraph2.setDialogue("In fact, I think nothing ever could...");
-        paragraph3.setDialogue("The moves... the swag... the sugoi desu ne kawaii...");
-        paragraph4.setDialogue("I was truly flabbergasted...");
+        paragraph3.setDialogue("I was truly flabbergasted...");
         sound.stop();
         sound = new Sound("/dokidokiost.wav");
         sound.play();
@@ -990,7 +987,7 @@ public class GameScenario {
         waitForInput();
 
         changeName("YOU");
-        paragraph1.setDialogue("My heart goes DOKI DOKI ultrasupreme 9000.");
+        paragraph1.setDialogue("My heart goes DOKI DOKI UltraSupreme 9000.");
         paragraph2.setDialogue("Could this be my chance...?");
 
         waitForInput();
@@ -1007,7 +1004,7 @@ public class GameScenario {
         deleteScene();
         drawScene(Scene.METROPOLIS3);
         paragraph1.setDialogue("I'm almost finished with Sniper Elite...");
-        paragraph2.setDialogue("This time with real bullets!");
+        paragraph2.setDialogue("This time with real guns!");
         transitions.deleteTransition();
         waitForInput();
         paragraph1.setDialogue("Time for a pee break!");
@@ -1091,7 +1088,7 @@ public class GameScenario {
         paragraph1.setDialogue("But after some serious thinking");
         paragraph2.setDialogue("I think I know for whom my heart doki dokis the most...");
         waitForInput();
-        transitions = Transitions.END_OF_DAY;
+        transitions = Transitions.CODEBREAK;
         transitions.getPicture();
         waitForInput();
 
@@ -1281,7 +1278,7 @@ public class GameScenario {
         transitions = Transitions.NOZKEND;
         transitions.getPicture();
         sound.stop();
-        sound = new Sound("/nozkmusic.wav");
+        sound = new Sound("/bundanochao.wav");
         sound.play();
 
     }
