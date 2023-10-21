@@ -234,6 +234,7 @@ public class GameScenario {
             waitForInput();
             sound.stop();
             sound = new Sound("/drumroll.wav");
+            sound.play();
             nozk.setPicture(Sprites.NOZKTRICK1.getExpression());
             Thread.sleep(200);
             nozk.setPicture(Sprites.NOZKTRICK2.getExpression());
@@ -242,6 +243,7 @@ public class GameScenario {
             waitForInput();
             sound.stop();
             sound = new Sound("/dokidokiost.wav");
+            sound.play();
             //inserir sprites...
 
             changeName("YOU");
@@ -566,6 +568,7 @@ public class GameScenario {
         waitForInput();
         sound.stop();
         sound = new Sound("/nozkmusic.wav");
+        sound.play();
         nozk.setPicture(Sprites.NOZKTRICK3.getExpression());
         Thread.sleep(100);
         nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
@@ -621,6 +624,7 @@ public class GameScenario {
         paragraph4.setDialogue("I was truly flabbergasted...");
         sound.stop();
         sound = new Sound("/dokidokiost.wav");
+        sound.play();
         waitForInput();
 
         changeName("NOZK");
@@ -1278,6 +1282,7 @@ public class GameScenario {
         transitions.getPicture();
         sound.stop();
         sound = new Sound("/nozkmusic.wav");
+        sound.play();
 
     }
 
