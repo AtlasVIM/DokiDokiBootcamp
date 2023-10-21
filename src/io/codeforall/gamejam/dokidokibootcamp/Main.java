@@ -7,7 +7,9 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Game game = new Game();
+        Sound sound = new Sound();
 
+        sound.play();
         game.start();
     }
 }
