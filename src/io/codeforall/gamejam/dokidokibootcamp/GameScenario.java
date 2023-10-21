@@ -97,7 +97,7 @@ public class GameScenario {
  */
 
     public void day1() throws InterruptedException {
-        sound = new Sound("/backgroundSound.wav");
+        sound = new Sound("/dokidokiost.wav");
         sound.play();
         transitions = Transitions.MAINSCREEN;
         transitions.getPicture();
@@ -232,12 +232,16 @@ public class GameScenario {
             changeName("NOZK");
             paragraph1.setDialogue("Check this out.");
             waitForInput();
+            sound.stop();
+            sound = new Sound("/drumroll.wav");
             nozk.setPicture(Sprites.NOZKTRICK1.getExpression());
             Thread.sleep(200);
             nozk.setPicture(Sprites.NOZKTRICK2.getExpression());
             Thread.sleep(200);
             nozk.setPicture(Sprites.NOZKTRICK3.getExpression());
             waitForInput();
+            sound.stop();
+            sound = new Sound("/dokidokiost.wav");
             //inserir sprites...
 
             changeName("YOU");
@@ -297,7 +301,7 @@ public class GameScenario {
             paragraph1.setDialogue("Pretty sugoi, huh...");
             waitForInput();
             mikesom.stop();
-            sound = new Sound("/backgroundSound.wav");
+            sound = new Sound("/dokidokiost.wav");
             sound.play();
         }
         if (Controls.getDialogue() == 1) {
@@ -560,6 +564,8 @@ public class GameScenario {
         paragraph1.setDialogue("I was just preparing for my k-pop dance competition!");
         paragraph2.setDialogue("CHECK THIS OUT!!!");
         waitForInput();
+        sound.stop();
+        sound = new Sound("/nozkmusic.wav");
         nozk.setPicture(Sprites.NOZKTRICK3.getExpression());
         Thread.sleep(100);
         nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
@@ -613,6 +619,8 @@ public class GameScenario {
         paragraph2.setDialogue("In fact, I think nothing ever could...");
         paragraph3.setDialogue("The moves... the swag... the sugoi desu ne kawaii...");
         paragraph4.setDialogue("I was truly flabbergasted...");
+        sound.stop();
+        sound = new Sound("/dokidokiost.wav");
         waitForInput();
 
         changeName("NOZK");
@@ -1190,6 +1198,9 @@ public class GameScenario {
 
         transitions = Transitions.TOGETHEREND;
         transitions.getPicture();
+        sound.stop();
+        sound = new Sound("/bakamitai.wav");
+        sound.play();
 
 
     }
@@ -1265,6 +1276,8 @@ public class GameScenario {
 
         transitions = Transitions.NOZKEND;
         transitions.getPicture();
+        sound.stop();
+        sound = new Sound("/nozkmusic.wav");
 
     }
 
