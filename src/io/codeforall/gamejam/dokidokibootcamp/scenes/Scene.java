@@ -16,6 +16,7 @@ public enum Scene {
     BALCONY("cfa_balcony.jpg"),
     BACKROOMS("cfa_backrooms.jpg"),
     COFFEETABLE("cfa_coffee.jpg"),
+    CODEBREAK("cfa_codebreak.jpg"),
     CAFETERIA("cfa_cafeteria.jpg");
 
 

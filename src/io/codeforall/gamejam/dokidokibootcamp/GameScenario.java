@@ -6,6 +6,7 @@ import io.codeforall.gamejam.dokidokibootcamp.gameobjects.CharacterMike;
 import io.codeforall.gamejam.dokidokibootcamp.gameobjects.CharacterNozk;
 import io.codeforall.gamejam.dokidokibootcamp.gameobjects.Sprites;
 import io.codeforall.gamejam.dokidokibootcamp.scenes.*;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class GameScenario {
@@ -95,6 +96,17 @@ public class GameScenario {
  */
 
     public void day1() throws InterruptedException {
+        transitions = Transitions.MAINSCREEN;
+        transitions.getPicture();
+        Dialogue text = new Dialogue(650,100, "PRESS SPACE TO CONTINUE...");
+
+        Dialogue text2 = new Dialogue(650,130, "UP AND DOWN KEYS TO SELECT...");
+        Thread.sleep(1000);
+        while(!gameStatus) {
+        }
+        transitions.deleteTransition();
+        text.delete();
+        text2.delete();
         day1setup();
         day1scenario1();
         day1choice();
@@ -1015,7 +1027,7 @@ public class GameScenario {
             paragraph1.setDialogue("All the cool people will be there!");
             waitForInput();
             nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
-            paragraph2.setDialogue("Like me!");
+            paragraph1.setDialogue("Like me!");
             waitForInput();
 
         }
@@ -1036,6 +1048,7 @@ public class GameScenario {
     }
 
     public void day4end() throws InterruptedException {
+        clearCharacters();
         deleteScene();
         drawScene(Scene.LOBBY);
         paragraph1.setDialogue("Whatever should I do...");
@@ -1059,9 +1072,266 @@ public class GameScenario {
         waitForInput();
         transitions = Transitions.END_OF_DAY;
         transitions.getPicture();
+        waitForInput();
 
     }
-}
+
+   // ================= DAY 5 =====================
+
+    public void day5() throws InterruptedException {
+        System.out.println("NOZK "+ nozk.getLoveLevel()+": MIKE"+ mike.getLoveLevel());
+        clearCharacters();
+        deleteScene();
+        drawScene(Scene.CODEBREAK);
+        changeName("YOU");
+        paragraph1.setDialogue("Finally the much awaited Code Break comes to be.");
+        transitions.deleteTransition();
+        waitForInput();
+        if (nozk.getLoveLevel() < 4 && mike.getLoveLevel() < 4) {
+            togetherEnding();
+        }
+        if (nozk.getLoveLevel() < mike.getLoveLevel()) {
+            micEnding();
+        } else {
+            nozkEnding();
+        }
+    }
+
+    private void togetherEnding() throws InterruptedException {
+        paragraph1.setDialogue("I look around...");
+        paragraph2.setDialogue("I see two drunk senpais holding hands");
+        waitForInput();
+
+        paragraph1.setDialogue("BAKAS ୧(๑•̀ᗝ•́)૭");
+        waitForInput();
+
+        paragraph1.setDialogue("I can't believe my eyes (ㅠ﹏ㅠ)");
+        paragraph2.setDialogue("I feel my sugoi levels going down...");
+        waitForInput();
+
+        mike.getPicture().translate(50,0);
+        nozk.getPicture().translate(-50,0);
+        drawCharacter(nozk, Sprites.NOZKHORNY);
+        drawCharacter(mike, Sprites.MIKEHORNY);
+
+        changeName("MIC & NOZK");
+        paragraph1.setDialogue("Cadet-kun... *hic*");
+        paragraph2.setDialogue("There's something we *hic* must tell you.");
+        waitForInput();
+
+        changeName("MIC");
+        paragraph1.setDialogue("Me and Nozk... Well...");
+        waitForInput();
+
+        changeName("NOZK");
+        paragraph1.setDialogue("What Mic is trying to say is...");
+        waitForInput();
+
+        changeName("MIC & NOZK");
+        mike.setPicture(Sprites.MIKESURPRISED.getExpression());
+        nozk.setPicture((Sprites.NOZKSURPRISED.getExpression()));
+        paragraph1.setDialogue("WE'RE A COUPLE NOW (°ロ°)");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("YOU GOTTA BE SHITTING ME ୧(๑•̀ᗝ•́)૭");
+        waitForInput();
+
+        changeName("MIC & NOZK");
+        mike.setPicture(Sprites.MIKEHAPPY.getExpression());
+        nozk.setPicture((Sprites.NOZKHAPPY.getExpression()));
+        paragraph1.setDialogue("You know, we've been thinking...");
+        waitForInput();
+
+        paragraph1.setDialogue("We spent all week fighting for your love");
+        paragraph2.setDialogue("And that was making our relationship not sugoi at all");
+        waitForInput();
+
+        paragraph1.setDialogue("And since we were both looking for the same thing, well...");
+        paragraph2.setDialogue("We realized that...");
+        waitForInput();
+
+        mike.setPicture(Sprites.MIKESURPRISED.getExpression());
+        nozk.setPicture((Sprites.NOZKSURPRISED.getExpression()));
+        paragraph1.setDialogue("WE HAD ALREADY FOUND EACH OTHER!");
+        waitForInput();
+
+        mike.setPicture(Sprites.MIKEHORNY.getExpression());
+        nozk.setPicture((Sprites.NOZKHORNY.getExpression()));
+        changeName("YOU");
+        paragraph1.setDialogue("WHAT?!");
+        paragraph2.setDialogue("WHAT ABOUT ME?!");
+        waitForInput();
+
+        paragraph1.setDialogue("How could have I been so blind...");
+        waitForInput();
+
+        paragraph1.setDialogue("I was so selfish in my quest for love (ㅠ﹏ㅠ)");
+        waitForInput();
+
+        paragraph1.setDialogue("If only I took the time to know them...");
+        waitForInput();
+
+        paragraph1.setDialogue("If only I made the right choices...");
+        waitForInput();
+
+        paragraph1.setDialogue("If only...");
+        waitForInput();
+
+        transitions = Transitions.TOGETHEREND;
+        transitions.getPicture();
+
+
+    }
+
+    private void nozkEnding() throws InterruptedException {
+        drawCharacter(nozk,Sprites.NOZKHORNY);
+        changeName("NOZK");
+        paragraph1.setDialogue("Cadet-kun! *hic*");
+        waitForInput();
+        paragraph1.setDialogue("You came!");
+        paragraph2.setDialogue("I'm *hic* so glad!");
+        waitForInput();
+        paragraph1.setDialogue("Here, have a beer with me!");
+        paragraph2.setDialogue("*hic*");
+        waitForInput();
+        nozk.delete();
+
+        transitions = Transitions.END_OF_CLASS;
+        transitions.getPicture();
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Everything's going great");
+        paragraph2.setDialogue("With my silly willy Nozk-senpai >.<");
+        transitions.deleteTransition();
+        waitForInput();
+
+        paragraph1.setDialogue("I look around...");
+        paragraph2.setDialogue("There's no sign of Mic...");
+        waitForInput();
+
+        paragraph1.setDialogue("I am alone with Nozk-senpai...");
+        paragraph2.setDialogue("If DOKI DOKI-ing was I crime...");
+        paragraph3.setDialogue("I'd be in jail right now.");
+        waitForInput();
+
+        changeName("NOZK");
+        drawCharacter(nozk, Sprites.NOZKHORNY);
+        paragraph1.setDialogue("Cadet-kun... I have something to tell you");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("A chill comes down my spine");
+        paragraph2.setDialogue("As my heart skips a DOKI DOKI ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ");
+        waitForInput();
+
+        changeName("NOZK");
+        paragraph1.setDialogue("Cadet-kun...");
+        waitForInput();
+
+        paragraph1.setDialogue("My heart DOKI DOKIS for you (,,>﹏<,,)");
+        paragraph2.setDialogue("SUKI DESU (づ_ど)");
+        waitForInput();
+
+        nozk.delete();
+        changeName("YOU");
+        paragraph1.setDialogue("Before I could say anything");
+        paragraph2.setDialogue("Nozk kisses me on the lips O.O");
+        waitForInput();
+
+        paragraph1.setDialogue("My heart explodes with SUGOI DESU NE!!!");
+        waitForInput();
+
+        paragraph1.setDialogue("This is the kawaiiest day of my kawaii life!");
+        waitForInput();
+
+        paragraph1.setDialogue("If programming doesn't go as planned");
+        paragraph2.setDialogue("I can at least say that in the <Code4All_> bootcamp...");
+        waitForInput();
+
+        paragraph1.setDialogue("I found the love of my life ˚ʚ♡ɞ˚");
+        waitForInput();
+
+        transitions = Transitions.NOZKEND;
+        transitions.getPicture();
+
+    }
+
+    private void micEnding() throws InterruptedException{
+        drawCharacter(mike, Sprites.MIKEHORNY);
+        changeName("MIC");
+        paragraph1.setDialogue("Cadet-kun! *hic*");
+        waitForInput();
+        paragraph1.setDialogue("You came!");
+        paragraph2.setDialogue("I'm *hic* so glad!");
+        waitForInput();
+        paragraph1.setDialogue("Here, have a beer with me!");
+        paragraph2.setDialogue("*hic*");
+        waitForInput();
+        mike.delete();
+
+        transitions = Transitions.END_OF_CLASS;
+        transitions.getPicture();
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Everything's going great");
+        paragraph2.setDialogue("With my super cool Mic-senpai >.<");
+        transitions.deleteTransition();
+        waitForInput();
+
+        paragraph1.setDialogue("I look around...");
+        paragraph2.setDialogue("There's no sign of Nozk...");
+        waitForInput();
+
+        paragraph1.setDialogue("I am alone with Mic-senpai...");
+        paragraph2.setDialogue("If DOKI DOKI-ing was I crime...");
+        paragraph3.setDialogue("I'd be in jail right now.");
+        waitForInput();
+
+        changeName("MIC");
+        drawCharacter(mike, Sprites.MIKEHORNY);
+        paragraph1.setDialogue("Cadet-kun... I have something to tell you");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("A chill comes down my spine");
+        paragraph2.setDialogue("As my heart skips a DOKI DOKI ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ");
+        waitForInput();
+
+        changeName("MIC");
+        paragraph1.setDialogue("Cadet-kun...");
+        waitForInput();
+
+        paragraph1.setDialogue("My heart DOKI DOKIS for you (,,>﹏<,,)");
+        paragraph2.setDialogue("SUKI DESU (づ_ど)");
+        waitForInput();
+
+        mike.delete();
+        changeName("YOU");
+        paragraph1.setDialogue("Before I could say anything");
+        paragraph2.setDialogue("MIC kisses me on the lips O.O");
+        waitForInput();
+
+        paragraph1.setDialogue("My heart explodes with SUGOI DESU NE!!!");
+        waitForInput();
+
+        paragraph1.setDialogue("This is the kawaiiest day of my kawaii life!");
+        waitForInput();
+
+        paragraph1.setDialogue("If programming doesn't go as planned");
+        paragraph2.setDialogue("I can at least say that in the <Code4All_> bootcamp...");
+        waitForInput();
+
+        paragraph1.setDialogue("I found the love of my life ˚ʚ♡ɞ˚");
+        waitForInput();
+
+        transitions = Transitions.MICEND;
+        transitions.getPicture();
+
+    }
+    }
 
 
 

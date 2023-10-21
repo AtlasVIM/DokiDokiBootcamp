@@ -15,10 +15,12 @@ public class Game {
 
     public void start() throws InterruptedException {
         Controls controls = new Controls();
+
         gameScenario.day1();
         gameScenario.day2();
         gameScenario.day3();
         gameScenario.day4();
+        gameScenario.day5();
     }
 
 }

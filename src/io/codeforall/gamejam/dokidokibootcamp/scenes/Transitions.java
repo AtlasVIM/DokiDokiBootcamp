@@ -4,7 +4,12 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public enum Transitions {
     END_OF_DAY (new Picture (10, 10, "nextdayuwu.jpg")),
-    END_OF_CLASS(new Picture(10,10, "littlelater.png"));
+    MAINSCREEN (new Picture(10,10,"mainscreen.jpg")),
+    END_OF_CLASS(new Picture(10,10, "littlelater.png")),
+    CODEBREAK(new Picture(10,10,"transition_codebreak.jpg")),
+    TOGETHEREND(new Picture(10,10,"littlelater.png")),
+    MICEND(new Picture(10,10,"endingMike.png")),
+    NOZKEND(new Picture(10,10,"littlelater.png"));
 
     private Picture picture;
 
