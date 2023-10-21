@@ -31,6 +31,7 @@ public class GameScenario {
     public String dayChoice;
     public String dayReject;
     public Transitions transitions;
+    Sound sound;
 
     public static volatile boolean gameStatus;
 
@@ -96,15 +97,16 @@ public class GameScenario {
  */
 
     public void day1() throws InterruptedException {
+        sound = new Sound("/backgroundSound.wav");
+        sound.play();
         transitions = Transitions.MAINSCREEN;
         transitions.getPicture();
         Dialogue text = new Dialogue(650,100, "PRESS SPACE TO CONTINUE...");
 
         Dialogue text2 = new Dialogue(650,130, "UP AND DOWN KEYS TO SELECT...");
-        Thread.sleep(1000);
+        Thread.sleep(200);
         while(!gameStatus) {
         }
-        transitions.deleteTransition();
         text.delete();
         text2.delete();
         day1setup();
@@ -125,7 +127,8 @@ public class GameScenario {
         this.paragraph2 = new Dialogue(480, 810, "");
         this.paragraph3 = new Dialogue(480, 850, "");
         this.paragraph4 = new Dialogue(480, 890, "");
-        this.nameText = new NameText("Catarina Campino");
+        this.nameText = new NameText("CATARINA CAMPINO");
+        transitions.deleteTransition();
     }
 
     public void day1scenario1() throws InterruptedException {
@@ -282,14 +285,20 @@ public class GameScenario {
             System.out.println(mike.getLoveLevel());
             line.delete();
             paragraph1.setDialogue("Mic turns on the classroom speakers"); //POR MINISAR A DAR AQUI
-
+            sound.stop();
+            Sound mikesom = new Sound("/mini-sar-ser-o-mini.wav");
+            mikesom.play();
             waitForInput();
 
             paragraph1.setDialogue("A symphony written by Apollo himself enters my ears.");
             paragraph2.setDialogue("I had never heard such a beautiful sound in my life before.");
             waitForInput();
+            changeName("MIC");
             paragraph1.setDialogue("Pretty sugoi, huh...");
             waitForInput();
+            mikesom.stop();
+            sound = new Sound("/backgroundSound.wav");
+            sound.play();
         }
         if (Controls.getDialogue() == 1) {
             line.delete();
@@ -1087,7 +1096,7 @@ public class GameScenario {
         paragraph1.setDialogue("Finally the much awaited Code Break comes to be.");
         transitions.deleteTransition();
         waitForInput();
-        if (nozk.getLoveLevel() < 4 && mike.getLoveLevel() < 4) {
+        if (nozk.getLoveLevel() < 3 && mike.getLoveLevel() < 3) {
             togetherEnding();
         }
         if (nozk.getLoveLevel() < mike.getLoveLevel()) {
@@ -1329,6 +1338,9 @@ public class GameScenario {
 
         transitions = Transitions.MICEND;
         transitions.getPicture();
+        sound.stop();
+        Sound mikeSound = new Sound("/mini-sar-ser-o-mini.wav");
+        mikeSound.play();
 
     }
     }
