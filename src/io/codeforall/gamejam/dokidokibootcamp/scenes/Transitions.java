@@ -4,7 +4,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public enum Transitions {
     END_OF_DAY (new Picture (10, 10, "nextdayuwu.jpg")),
-    END_OF_CLASS(new Picture(10,10, "littlelater.jpg"));
+    END_OF_CLASS(new Picture(10,10, "littlelater.png"));
 
     private Picture picture;
 
