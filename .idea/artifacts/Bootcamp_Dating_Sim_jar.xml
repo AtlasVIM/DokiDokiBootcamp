@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Bootcamp Dating Sim:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Bootcamp_Dating_Sim_jar</output-path>
+    <root id="archive" name="Bootcamp Dating Sim.jar">
+      <element id="module-output" name="Bootcamp Dating Sim" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/simple-graphics-0.2.1-SNAPSHOT.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+    </root>
+  </artifact>
+</component>
