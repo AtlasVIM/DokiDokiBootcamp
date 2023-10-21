@@ -25,6 +25,10 @@ public abstract class Character {
         loveLevel++;
     }
 
+    public void subLoveLevel() {
+        loveLevel--;
+    }
+
     public void setPicture(String s) {
         picture.load(s);
         picture.draw();

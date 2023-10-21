@@ -14,13 +14,13 @@ public class GameScenario {
     public GameScenario() {
     }
 
-    private Scene scene;
-    private Textbox textbox;
+    private static Scene scene;
+    private static Textbox textbox;
     private Dialogue paragraph1;
     private Dialogue paragraph2;
     private Dialogue paragraph3;
     private Dialogue paragraph4;
-    private NameText nameText;
+    private static NameText nameText;
 
     public static ChoiceLine line;
 
@@ -47,6 +47,22 @@ public class GameScenario {
         paragraph1.delete();
     }
 
+    public static void setScene(Scene newScene) {
+        scene = newScene;
+    }
+
+    public static void deleteScene() {
+        scene.delete();
+    }
+
+    public static void drawScene(Scene scene) {
+        textbox.delete();
+        nameText.delete();
+        scene.draw();
+        textbox.draw();
+        nameText.draw();
+
+    }
 
     public void drawCharacter(Character c, Sprites s) {
         nameText.delete();
@@ -91,7 +107,7 @@ public class GameScenario {
 
     public void day1setup() { //
         line = new ChoiceLine();
-        this.scene = new Scene("codeforall_lobby.jpg");
+        Scene.LOBBY.draw();
         this.textbox = new Textbox();
         this.paragraph1 = new Dialogue(480, 770, "Good Morning everyone");
         this.paragraph2 = new Dialogue(480, 810, "");
@@ -173,7 +189,9 @@ public class GameScenario {
 
 
     public void day1nozk() throws InterruptedException {
-        Scene.load("cfa_metropolis.jpg");
+        nozk.addLoveLevel();
+        deleteScene();
+        drawScene(Scene.METROPOLIS3);
         clearText();
 
         drawCharacter(nozk, Sprites.NOZKHAPPY);
@@ -199,22 +217,26 @@ public class GameScenario {
             changeName("NOZK");
             paragraph1.setDialogue("Check this out.");
             waitForInput();
+            nozk.setPicture(Sprites.NOZKTRICK1.getExpression());
+            Thread.sleep(200);
+            nozk.setPicture(Sprites.NOZKTRICK2.getExpression());
+            Thread.sleep(200);
+            nozk.setPicture(Sprites.NOZKTRICK3.getExpression());
+            waitForInput();
             //inserir sprites...
 
             changeName("YOU");
             paragraph1.setDialogue("I was amazed beyond comprehension.");
             paragraph2.setDialogue("How the hell did he do that!?!?");
             waitForInput();
-        }
-
-        if (Controls.getDialogue() == 1) {
+            nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+        } else {
             changeName("NOZK");
             nozk.setPicture(Sprites.NOZKSAD.getExpression());
             paragraph1.setDialogue("Damn, you disgrace...");
             waitForInput();
         }
-
-        clearText();
+        changeName("NOZK");
         paragraph1.setDialogue("Anyways it's time for class!");
         waitForInput();
         changeName("YOU");
@@ -224,7 +246,9 @@ public class GameScenario {
     }
 
     public void day1mic() throws InterruptedException {
-        Scene.load("cfa_metropolis.jpg");
+        mike.addLoveLevel();
+        deleteScene();
+        drawScene(Scene.SINCITY1);
         clearText();
 
         drawCharacter(mike, Sprites.MIKEHAPPY);
@@ -309,8 +333,9 @@ public class GameScenario {
     public void day2scenario1() throws InterruptedException {
         clearCharacters();
 
-        Scene.load("codeforall_lobby.jpg");
-        paragraph1.setDialogue("Last night with " + dayChoice + " was amazing...");
+        deleteScene();
+        drawScene(Scene.HALL);
+        paragraph1.setDialogue("Yesterday with " + dayChoice + " was really smooth...");
         transitions.deleteTransition();
         waitForInput();
 
@@ -352,8 +377,7 @@ public class GameScenario {
                 nozk.addLoveLevel();
                 nozk.setPicture(Sprites.NOZKSURPRISED.getExpression());
                 System.out.println(nozk.getLoveLevel());
-            }
-            if (Controls.getDialogue() == 1) {
+            } else {
                 nozk.setPicture(Sprites.NOZKSAD.getExpression()); /// Mudar para triste.
             }
             line.delete();
@@ -376,8 +400,7 @@ public class GameScenario {
                 mike.setPicture(Sprites.MIKESURPRISED.getExpression());
                 mike.addLoveLevel();
                 System.out.println(mike.getLoveLevel());
-            }
-            if (Controls.getDialogue() == 1) {
+            } else {
                 mike.setPicture(Sprites.MIKESAD.getExpression());
             }
             line.delete();
@@ -400,6 +423,8 @@ public class GameScenario {
     public void day2lunchtime() throws InterruptedException {
         clearCharacters();
         waitForInput();
+        deleteScene();
+        drawScene(Scene.CAFETERIA);
         transitions.deleteTransition();
 
         changeName("YOU");
@@ -434,6 +459,8 @@ public class GameScenario {
         paragraph1.setDialogue("Another day comes to an end.");
         waitForInput();
 
+        deleteScene();
+        drawScene(Scene.BALCONY);
         drawCharacter(nozk, Sprites.NOZKHAPPY);
         paragraph1.setDialogue("I see Nozk in the balcony smoking a funny smelling cigarette.");
         waitForInput();
@@ -454,8 +481,6 @@ public class GameScenario {
         paragraph1.setDialogue("Well... I guess it's time to go home now.");
         waitForInput();
 
-        transitions = Transitions.END_OF_DAY;
-        transitions.getPicture();
     }
 
 
@@ -514,22 +539,59 @@ public class GameScenario {
         paragraph1.setDialogue("I was just preparing for my k-pop dance competition!");
         paragraph2.setDialogue("CHECK THIS OUT!!!");
         waitForInput();
+        nozk.setPicture(Sprites.NOZKTRICK3.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKANGRY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKTRICK1.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKSAD.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKTRICK2.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKSURPRISED.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKSAD.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKANGRY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKANGRY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKTRICK3.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKANGRY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKTRICK1.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKSAD.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKTRICK2.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKSURPRISED.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKSAD.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKANGRY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKANGRY.getExpression());
+        Thread.sleep(100);
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
 
         changeName("YOU");
         paragraph1.setDialogue("Nothing prepared me for what I witnessed");
         paragraph2.setDialogue("In fact, I think nothing ever could...");
         paragraph3.setDialogue("The moves... the swag... the sugoi desu ne kawaii...");
-        Thread.sleep(500);
         paragraph4.setDialogue("I was truly flabbergasted...");
-        while (gameStatus) {
-            nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
-            nozk.setPicture(Sprites.NOZKANGRY.getExpression());
-            nozk.setPicture(Sprites.NOZKSAD.getExpression());
-            nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
-            nozk.setPicture(Sprites.NOZKSURPRISED.getExpression());
-            nozk.setPicture(Sprites.NOZKSAD.getExpression());
-            nozk.setPicture(Sprites.NOZKANGRY.getExpression());
-        }
         waitForInput();
 
         changeName("NOZK");
@@ -568,115 +630,413 @@ public class GameScenario {
     ============================================ DAY 3 ==================================================
      */
 
-    public void day3() {
+    public void day3() throws InterruptedException {
         day3scenario1();
     }
 
-    public void day3scenario1() {
-        Scene.load("codeforall_lobby.jpg");
+    public void day3scenario1() throws InterruptedException {
+        transitions = Transitions.END_OF_DAY;
+        transitions.getPicture();
+        waitForInput();
+        clearCharacters();
+        deleteScene();
+        drawScene(Scene.CAFETERIA);
+        paragraph1.setDialogue("Another exciting morning at CodeForAll.");
+        paragraph2.setDialogue("Specially because those two are here (,,>﹏<,,)");
+        transitions.deleteTransition();
+        waitForInput();
+        paragraph1.setDialogue("Sitting on the tables of the cafeteria I see my two lovers.");
+        paragraph2.setDialogue("It's almost time for class");
+        paragraph3.setDialogue("so I'll only have time to talk to one of them... T_T");
+        paragraph4.setDialogue("Why learn Git instead of letting me Git into their hearts...");
+        waitForInput();
+        paragraph1.setDialogue("Talk to Nozk");
+        paragraph2.setDialogue("Talk to Mic");
+        line.fill();
+        waitForInput();
+        line.delete();
+        if (Controls.getDialogue() == 0) {
+            day3MorningNozk();
+        } else {
+            day3MorningMic();
+        }
 
+        paragraph1.setDialogue("After that, everyone left for class.");
+        waitForInput();
+
+        paragraph1.setDialogue("The rest of the day was tenser than usual...");
+        waitForInput();
+
+        transitions = Transitions.END_OF_DAY;
+        transitions.getPicture();
 
     }
 
-    /*
-    public void day2choice(){ //throws InterruptedException {
-        clearText();
-        changeName("YOU");
-        paragraph1.setDialogue("Mic is so cool and mysterious...");
+    public void day3MorningNozk() throws InterruptedException {
+        nozk.addLoveLevel();
+        drawCharacter(nozk, Sprites.NOZKHAPPY);
+        changeName("NOZK");
+        paragraph1.setDialogue("If it isn't my favorite Cadet!");
         waitForInput();
-        clearText();
+
+        paragraph1.setDialogue("Say, how do you feel about-");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Before he finished his question, Mic suddenly interrupted.");
+        waitForInput();
+        nozk.delete();
+
+        drawCharacter(mike, Sprites.MIKEANGRY);
+        changeName("MIC");
+        paragraph1.setDialogue("GETTING ALONG JUST FINE, ARE WE?!");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Oh Mic, I... I can explain!");
+        waitForInput();
+
+        changeName("MIC");
+        paragraph1.setDialogue("Ever since we met");
+        paragraph2.setDialogue("All I wanted was to spend time with you!");
+        waitForInput();
+
+        mike.setPicture(Sprites.MIKESAD.getExpression());
+        paragraph1.setDialogue("But you just ignore me...");
+        paragraph2.setDialogue("I bet you wished I wasn't even here!");
+        waitForInput();
 
         mike.delete();
-        drawCharacter(nozk);
-        paragraph1.setDialogue("And Nozk is such a goofball...");
+        drawCharacter(nozk, Sprites.NOZKANGRY);
+        changeName("NOZK");
+        paragraph1.setDialogue("HEY!");
         waitForInput();
-        clearText();
+
+        paragraph1.setDialogue("YOU LEAVE MY LITTLE KITTEN ALONE!");
+        waitForInput();
 
         nozk.delete();
-        paragraph1.setDialogue("They are both so sugoi....");
-        paragraph2.setDialogue("What should I do..?");
+        changeName("YOU");
+        paragraph1.setDialogue("Before I knew it, both senpais started fighting over me.");
         waitForInput();
+
+        paragraph1.setDialogue("After a while, Mic went away crying.");
+        waitForInput();
+
+        drawCharacter(nozk, Sprites.NOZKANGRY);
+        changeName("NOZK");
+        paragraph1.setDialogue("AND DON'T COME BACK!");
+        waitForInput();
+
+        nozk.setPicture(Sprites.NOZKSAD.getExpression());
+        paragraph1.setDialogue("Sorry about that...");
+        paragraph2.setDialogue("I didn't want you to see this... violent side of me");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("It's okay, senpai. Mic was a real meanie T_T");
+        paragraph2.setDialogue("Actually... I think you should apologize to Mic.");
         line.fill();
-        paragraph1.setDialogue("Talk to Mic.");
-        paragraph2.setDialogue("Talk to Nozk.");
         waitForInput();
+        changeName("NOZK");
+
+        line.delete();
+        if (Controls.getDialogue() == 0) {
+            nozk.addLoveLevel();
+            System.out.println("MIKE "+mike.getLoveLevel());
+            System.out.println("NOZK" + nozk.getLoveLevel());
+            nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+            paragraph1.setDialogue("Yeah! You don't deserve all that soyness.");
+            waitForInput();
+            nozk.setPicture(Sprites.NOZKHORNY.getExpression());
+            paragraph1.setDialogue("You know, Cadet-kun... You mean a lot to me...");
+            waitForInput();
+
+            changeName("YOU");
+            paragraph1.setDialogue("MY HEART DOKI DOKIS LIKE IT NEVER DOKI DOKIED BEFORE!!!");
+            waitForInput();
+
+            nozk.delete();
+
+        } else {
+            mike.subLoveLevel();
+            nozk.subLoveLevel();
+            System.out.println("MIKE "+mike.getLoveLevel());
+            System.out.println("NOZK" + nozk.getLoveLevel());
+            paragraph1.setDialogue("Oh... You really think so?");
+            waitForInput();
+
+            paragraph1.setDialogue("I'm sorry Cadet-kun...");
+            paragraph2.setDialogue("There's a lot I need to think about right now...");
+            waitForInput();
+
+            nozk.delete();
+            changeName("YOU");
+            paragraph1.setDialogue("Nozk just left...");
+            paragraph2.setDialogue("Maybe this was not the response he was expecting from me...");
+            waitForInput();
+        }
+
     }
-    public void day2chooseDialogue() throws InterruptedException {
-        switch (Controls.getDialogue()) {
-            case 0:
-                clearText();
-                line.delete();
-                day1classroom();
-                break;
-            case 1:
-                clearText();
-                line.delete();
-                day1bathroom();
-                break;
-            default:
-                break;
+
+    public void day3MorningMic() throws InterruptedException{
+        mike.addLoveLevel();
+        drawCharacter(mike, Sprites.MIKEHAPPY);
+        changeName("MIC");
+        paragraph1.setDialogue("If it isn't my favorite Cadet!");
+        waitForInput();
+
+        paragraph1.setDialogue("Say, how do you feel about-");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Before he finished his question, Nozk suddenly interrupted.");
+        waitForInput();
+        mike.delete();
+
+        drawCharacter(nozk, Sprites.NOZKANGRY);
+        changeName("NOZK");
+        paragraph1.setDialogue("GETTING ALONG JUST FINE, ARE WE?!");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("Oh Nozk, I... I can explain!");
+        waitForInput();
+
+        changeName("NOZK");
+        paragraph1.setDialogue("Ever since we met");
+        paragraph2.setDialogue("All I wanted was to spend time with you!");
+        waitForInput();
+
+        nozk.setPicture(Sprites.NOZKSAD.getExpression());
+        paragraph1.setDialogue("But you just ignore me...");
+        paragraph2.setDialogue("I bet you wished I wasn't even here!");
+        waitForInput();
+
+        nozk.delete();
+        drawCharacter(mike, Sprites.MIKEANGRY);
+        changeName("MIC");
+        paragraph1.setDialogue("HEY!");
+        waitForInput();
+
+        paragraph1.setDialogue("YOU LEAVE MY LITTLE KITTEN ALONE!");
+        waitForInput();
+
+        mike.delete();
+        changeName("YOU");
+        paragraph1.setDialogue("Before I knew it, both senpais started fighting over me.");
+        waitForInput();
+
+        paragraph1.setDialogue("After a while, Nozk went away crying.");
+        waitForInput();
+
+        drawCharacter(mike, Sprites.MIKEANGRY);
+        changeName("MIC");
+        paragraph1.setDialogue("AND DON'T COME BACK!");
+        waitForInput();
+
+        mike.setPicture(Sprites.MIKESAD.getExpression());
+        paragraph1.setDialogue("Sorry about that...");
+        paragraph2.setDialogue("I didn't want you to see this... violent side of me");
+        waitForInput();
+
+        changeName("YOU");
+        paragraph1.setDialogue("It's okay, senpai. Nozk was a real meanie T_T");
+        paragraph2.setDialogue("Actually... I think you should apologize to Nozk.");
+        line.fill();
+        waitForInput();
+        changeName("MIC");
+
+        line.delete();
+        if (Controls.getDialogue() == 0) {
+            mike.addLoveLevel();
+            System.out.println("MIKE "+mike.getLoveLevel());
+            System.out.println("NOZK" + nozk.getLoveLevel());
+            mike.setPicture(Sprites.MIKEHAPPY.getExpression());
+            paragraph1.setDialogue("Yeah! You don't deserve all that soyness.");
+            waitForInput();
+            mike.setPicture(Sprites.MIKEHORNY.getExpression());
+            paragraph1.setDialogue("You know, Cadet-kun... You mean a lot to me...");
+            waitForInput();
+
+            changeName("YOU");
+            paragraph1.setDialogue("MY HEART DOKI DOKIS LIKE IT NEVER DOKI DOKIED BEFORE!!!");
+            waitForInput();
+
+            mike.delete();
+
+        } else {
+            mike.subLoveLevel();
+            nozk.subLoveLevel();
+            System.out.println("MIKE "+mike.getLoveLevel());
+            System.out.println("NOZK" + nozk.getLoveLevel());
+            paragraph1.setDialogue("Oh... You really think so?");
+            waitForInput();
+
+            paragraph1.setDialogue("I'm sorry Cadet-kun...");
+            paragraph2.setDialogue("There's a lot I need to think about right now...");
+            waitForInput();
+
+            mike.delete();
+            changeName("YOU");
+            paragraph1.setDialogue("Mic just left...");
+            paragraph2.setDialogue("Maybe this was not the response he was expecting from me...");
+            waitForInput();
         }
     }
 
+    // ===================== DAY 4 =======================
 
-    public void day2bathroom() throws InterruptedException {
-        Scene.load("resources/cfa_metropolis.jpg");
-        clearText();
-
-        drawCharacter(nozk);
-        changeName("NOZK");
-        paragraph1.setDialogue("Hello cadet! So glad to meet you");
-        waitForInput();
-
-        paragraph1.setDialogue("Do you wanna see a magic trick?");
-        waitForInput();
-        clearText();
-
-        changeName("YOU");
-        paragraph1.setDialogue("Magic? Sure!");
-        paragraph2.setDialogue("I'm not a big fan of magic tricks.");
-        line.fill();
-
-
+    public void day4() throws InterruptedException {
+        day4scenario1();
+        day4scenario2();
+        day4end();
     }
 
-    public void day2classroom() throws InterruptedException {
-        Scene.load("resources/cfa_metropolis.jpg");
-        clearText();
+    public void day4scenario1() throws InterruptedException {
+        waitForInput();
+        clearCharacters();
+        deleteScene();
+        drawScene(Scene.COFFEETABLE);
+        changeName("YOU");
+        paragraph1.setDialogue("Ah... nothing like starting the morning ");
+        paragraph2.setDialogue("by getting some delicious coffee.");
+        transitions.deleteTransition();
+        waitForInput();
+        paragraph1.setDialogue("I hear strange sounds start coming");
+        paragraph2.setDialogue("from the strange door behind me...");
+        waitForInput();
+        paragraph1.setDialogue("In fact, how long has this door been here!?");
+        waitForInput();
 
-        drawCharacter(mike);
+        deleteScene();
+        drawScene(Scene.BACKROOMS);
+        drawCharacter(mike, Sprites.MIKESURPRISED);
         changeName("MIC");
-        paragraph1.setDialogue("What's up cadet? My name's MicDrop");
+        paragraph1.setDialogue("NANI!? Cadet-kun, you're not supposed to be in here!?");
+        waitForInput();
+        mike.setPicture(Sprites.MIKEHAPPY.getExpression());
+        paragraph1.setDialogue("But actually, I'm glad you're here.");
+        paragraph2.setDialogue("I really wanted to talk to you...");
+        waitForInput();
+        paragraph1.setDialogue("Tomorrow we're gonna have our first Code Break!");
+        waitForInput();
+        paragraph1.setDialogue("Isn't that exciting!?");
+        waitForInput();
+        changeName("YOU");
+        paragraph1.setDialogue("Code Break, what's that?");
+        paragraph2.setDialogue("I'm gonna drink beer until I fall off the balcony >.<");
+        line.fill();
         waitForInput();
 
-        paragraph1.setDialogue("Do you like hip-hop?");
+        line.delete();
+        changeName("MIC");
+        if(Controls.getDialogue() == 0) {
+            mike.setPicture(Sprites.MIKESURPRISED.getExpression());
+            paragraph1.setDialogue("YOU DON'T KNOW WHAT THE CODE BREAK IS??");
+            waitForInput();
+            paragraph1.setDialogue("It's literally the best part of the bootcamp!");
+            waitForInput();
+            mike.setPicture(Sprites.MIKEHAPPY.getExpression());
+            paragraph1.setDialogue("We get to drink, to know each other...");
+            waitForInput();
+            paragraph1.setDialogue("And to drink some more!");
+            waitForInput();
+            paragraph1.setDialogue("Isn't that sugoi?");
 
+        } else {
+            paragraph1.setDialogue("That's the spirit!!");
+            waitForInput();
+
+
+        }
+        mike.setPicture(Sprites.MIKEHORNY.getExpression());
+        paragraph1.setDialogue("And don't worry, if you drink too much...");
+        paragraph2.setDialogue("I'll be there to catch you ;^)");
         waitForInput();
-        clearText();
 
         changeName("YOU");
-        paragraph1.setDialogue("Hell yeah!");
-        paragraph2.setDialogue("Nah, not a big fan...");
-        line.fill();
+        paragraph1.setDialogue("My heart goes DOKI DOKI ultrasupreme 9000.");
+        paragraph2.setDialogue("Could this be my chance...?");
 
         waitForInput();
-        clearText();
-        line.delete();
-
-        paragraph1.setDialogue("Mic turns on the classroom speakers"); //POR MINISAR A DAR AQUI
-
+        paragraph1.setDialogue("I guess I'll find out tomorrow...");
+        paragraph2.setDialogue("For now I'll just go to class and finish Car Crash 35.");
         waitForInput();
-
-        paragraph1.setDialogue("A symphony written by Apollo himself enters my ears.");
-        paragraph2.setDialogue("I had never heard such a beautiful sound in my life before.");
+        transitions = Transitions.END_OF_CLASS;
+        transitions.getPicture();
 
     }
 
+    public void day4scenario2() throws InterruptedException {
+        waitForInput();
+        deleteScene();
+        drawScene(Scene.METROPOLIS3);
+        paragraph1.setDialogue("I'm almost finished with Sniper Elite, this time with real bullets!");
+        transitions.deleteTransition();
+        waitForInput();
+        paragraph1.setDialogue("Time for a pee break!");
+        waitForInput();
+        deleteScene();
+        drawScene(Scene.WC);
+        paragraph1.setDialogue("I start relieving myself when...");
+        waitForInput();
+        drawCharacter(nozk, Sprites.NOZKSURPRISED);
+        changeName("NOZK");
+        paragraph1.setDialogue("Hey Cadet, you fryin' chicken in there?");
+        waitForInput();
 
+        nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+        paragraph1.setDialogue("Are you ready for tomorrow's Code Break?");
+        waitForInput();
 
+        changeName("YOU");
+        paragraph1.setDialogue("You know it Nozk-senpai ;^)");
+        paragraph2.setDialogue("Meh");
+        line.fill();
+        waitForInput();
 
-*/
+        if(Controls.getDialogue() == 0) {
+            nozk.setPicture(Sprites.NOZKSURPRISED.getExpression());
+            changeName("NOZK");
+            paragraph1.setDialogue("It's gonna be AWESOME!!!");
+            waitForInput();
+            nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+            paragraph1.setDialogue("Almost as awesome as myself.");
+            waitForInput();
+        } else {
+            nozk.setPicture(Sprites.NOZKSURPRISED.getExpression());
+            changeName("NOZK");
+            paragraph1.setDialogue("What do you mean \"Meh\"? ");
+            waitForInput();
+            paragraph1.setDialogue("All the cool people will be there!");
+            waitForInput();
+            nozk.setPicture(Sprites.NOZKHAPPY.getExpression());
+            paragraph2.setDialogue("Like me!");
+            waitForInput();
 
+        }
+        paragraph1.setDialogue("You know...");
+        waitForInput();
+        nozk.setPicture(Sprites.NOZKHORNY.getExpression());
+        paragraph1.setDialogue("I really wish you could spend it with me...");
+        waitForInput();
+        changeName("YOU");
+        paragraph1.setDialogue("My heart exploded from so much DOKI DOKING");
+        waitForInput();
+        nozk.delete();
+        paragraph1.setDialogue("And with that he left...");
+        waitForInput();
+        paragraph1.setDialogue("Wait, did he wash his hands...?");
+        waitForInput();
+
+    }
+
+    public void day4end(){
+        deleteScene();
+        drawScene(Scene.LOBBY);
+        paragraph1.setDialogue("I feel torn...");
+    }
 }
 
 

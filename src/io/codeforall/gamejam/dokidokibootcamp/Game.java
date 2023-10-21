@@ -18,6 +18,7 @@ public class Game {
         gameScenario.day1();
         gameScenario.day2();
         gameScenario.day3();
+        gameScenario.day4();
     }
 
 }
